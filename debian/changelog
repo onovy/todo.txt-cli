@@ -1,0 +1,5 @@
+todotxt-cli (2.10-1) unstable; urgency=medium
+
+  * Initial release. (Closes: #739973)
+
+ -- Ondřej Nový <novy@ondrej.org>  Sat, 19 Dec 2015 11:18:20 +0100

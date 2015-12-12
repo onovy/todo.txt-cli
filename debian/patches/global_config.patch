@@ -1,0 +1,19 @@
+Description: Change todo global config dir to /etc/todo-txt
+ .
+ todotxt-cli (2.10-1) UNRELEASED; urgency=medium
+ .
+   * Initial release. (Closes: #739973)
+Author: Ondrej Novy <novy@ondrej.org>
+Bug-Debian: http://bugs.debian.org/739973
+
+--- todotxt-cli-2.10.orig/todo.sh
++++ todotxt-cli-2.10/todo.sh
+@@ -594,7 +594,7 @@
+ TODOTXT_SORT_COMMAND=${TODOTXT_SORT_COMMAND:-env LC_COLLATE=C sort -f -k2}
+ TODOTXT_DISABLE_FILTER=${TODOTXT_DISABLE_FILTER:-}
+ TODOTXT_FINAL_FILTER=${TODOTXT_FINAL_FILTER:-cat}
+-TODOTXT_GLOBAL_CFG_FILE=${TODOTXT_GLOBAL_CFG_FILE:-/etc/todo/config}
++TODOTXT_GLOBAL_CFG_FILE=${TODOTXT_GLOBAL_CFG_FILE:-/etc/todo-txt/config}
+ 
+ # Export all TODOTXT_* variables
+ export ${!TODOTXT_@}

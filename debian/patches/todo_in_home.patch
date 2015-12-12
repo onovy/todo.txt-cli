@@ -1,0 +1,19 @@
+Description: Todo directory is in home directory
+ .
+ todotxt-cli (2.10-1) UNRELEASED; urgency=medium
+ .
+   * Initial release. (Closes: #739973)
+Author: Ondrej Novy <novy@ondrej.org>
+Bug-Debian: http://bugs.debian.org/739973
+
+--- todotxt-cli-2.10.orig/todo.cfg
++++ todotxt-cli-2.10/todo.cfg
+@@ -2,7 +2,7 @@
+ 
+ # Your todo.txt directory
+ #export TODO_DIR="/Users/gina/Documents/todo"
+-export TODO_DIR=$(dirname "$0")
++export TODO_DIR=~/.todo-txt
+ 
+ # Your todo/done/report.txt locations
+ export TODO_FILE="$TODO_DIR/todo.txt"

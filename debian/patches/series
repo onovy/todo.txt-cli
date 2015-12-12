@@ -1,0 +1,5 @@
+makefile.patch
+completion.patch
+version.patch
+global_config.patch
+todo_in_home.patch

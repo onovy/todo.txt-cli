@@ -1,0 +1,21 @@
+Description: Fix wrong version in GEN-VERSION-FILE script.
+ .
+ todotxt-cli (2.10-1) UNRELEASED; urgency=medium
+ .
+   * Initial release. (Closes: #739973)
+Author: Ondřej Nový <novy@ondrej.org>
+Bug-Debian: http://bugs.debian.org/739973
+Origin: upstream
+Bug: https://github.com/ginatrapani/todo.txt-cli/pull/147
+
+--- todotxt-cli-2.10.orig/GEN-VERSION-FILE
++++ todotxt-cli-2.10/GEN-VERSION-FILE
+@@ -2,7 +2,7 @@
+ # Based on git's GIT-VERSION-GEN.
+ 
+ VF=VERSION-FILE
+-DEF_VER=v2.2
++DEF_VER=v2.10
+ 
+ LF='
+ '

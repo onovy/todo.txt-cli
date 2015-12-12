@@ -1,0 +1,279 @@
+Description: Completition fixies after todo.sh->todo-txt renaming.
+ .
+ todotxt-cli (2.10-1) UNRELEASED; urgency=medium
+ .
+   * Initial release. (Closes: #739973)
+Author: Ondřej Nový <novy@ondrej.org>
+Bug-Debian: http://bugs.debian.org/739973
+
+--- todotxt-cli-2.10.orig/tests/t6000-completion.sh
++++ todotxt-cli-2.10/tests/t6000-completion.sh
+@@ -10,13 +10,13 @@ This test checks basic todo_completion o
+ readonly ACTIONS='add a addto addm append app archive command del rm depri dp do help list ls listaddons listall lsa listcon lsc listfile lf listpri lsp listproj lsprj move mv prepend prep pri p replace report shorthelp'
+ readonly OPTIONS='-@ -@@ -+ -++ -d -f -h -p -P -PP -a -n -t -v -vv -V -x'
+ 
+-test_todo_completion 'all arguments' 'todo.sh ' "$ACTIONS $OPTIONS"
+-test_todo_completion 'arguments beginning with a' 'todo.sh a' 'add a addto addm append app archive'
+-test_todo_completion 'all options' 'todo.sh -' "$OPTIONS"
+-test_todo_completion 'all actions after command action' 'todo.sh command ' "$ACTIONS"
+-test_todo_completion 'all arguments after option' 'todo.sh -a ' "$ACTIONS $OPTIONS"
+-test_todo_completion 'all arguments after options' 'todo.sh -a -p ' "$ACTIONS $OPTIONS"
+-test_todo_completion 'all options after options' 'todo.sh -a -p -' "$OPTIONS"
+-test_todo_completion 'nothing after action' 'todo.sh archive ' ''
++test_todo_completion 'all arguments' 'todo-txt ' "$ACTIONS $OPTIONS"
++test_todo_completion 'arguments beginning with a' 'todo-txt a' 'add a addto addm append app archive'
++test_todo_completion 'all options' 'todo-txt -' "$OPTIONS"
++test_todo_completion 'all actions after command action' 'todo-txt command ' "$ACTIONS"
++test_todo_completion 'all arguments after option' 'todo-txt -a ' "$ACTIONS $OPTIONS"
++test_todo_completion 'all arguments after options' 'todo-txt -a -p ' "$ACTIONS $OPTIONS"
++test_todo_completion 'all options after options' 'todo-txt -a -p -' "$OPTIONS"
++test_todo_completion 'nothing after action' 'todo-txt archive ' ''
+ 
+ test_done
+--- todotxt-cli-2.10.orig/tests/t6010-completion-contexts.sh
++++ todotxt-cli-2.10/tests/t6010-completion-contexts.sh
+@@ -16,12 +16,12 @@ cat > done.txt <<EOF
+ x 2012-02-21 +herbs @oriental buy spices
+ x 2012-02-21 +slack @home watch tv
+ EOF
+-test_todo_completion 'all contexts' 'todo.sh list @' '@garden @outdoor @outside'
+-test_todo_completion 'contexts beginning with o' 'todo.sh list @o' '@outdoor @outside'
+-test_todo_completion 'contexts beginning with outs' 'todo.sh list @outs' '@outside'
+-test_todo_completion 'contexts beginning with x' 'todo.sh list @x' ''
++test_todo_completion 'all contexts' 'todo-txt list @' '@garden @outdoor @outside'
++test_todo_completion 'contexts beginning with o' 'todo-txt list @o' '@outdoor @outside'
++test_todo_completion 'contexts beginning with outs' 'todo-txt list @outs' '@outside'
++test_todo_completion 'contexts beginning with x' 'todo-txt list @x' ''
+ 
+-test_todo_completion 'contexts from done tasks beginning with h' 'todo.sh list @h' '@home'
+-test_todo_completion 'contexts from done tasks beginning with or' 'todo.sh list @or' '@oriental'
++test_todo_completion 'contexts from done tasks beginning with h' 'todo-txt list @h' '@home'
++test_todo_completion 'contexts from done tasks beginning with or' 'todo-txt list @or' '@oriental'
+ 
+ test_done
+--- todotxt-cli-2.10.orig/tests/t6020-completion-projects.sh
++++ todotxt-cli-2.10/tests/t6020-completion-projects.sh
+@@ -16,12 +16,12 @@ cat > done.txt <<EOF
+ x 2012-02-21 +herbs @oriental buy spices
+ x 2012-02-21 +slack @home watch tv
+ EOF
+-test_todo_completion 'all projects' 'todo.sh list +' '+landscape +roses +shared +sunflowers'
+-test_todo_completion 'projects beginning with s' 'todo.sh list +s' '+shared +sunflowers'
+-test_todo_completion 'projects beginning with ro' 'todo.sh list +ro' '+roses'
+-test_todo_completion 'projects beginning with x' 'todo.sh list +x' ''
++test_todo_completion 'all projects' 'todo-txt list +' '+landscape +roses +shared +sunflowers'
++test_todo_completion 'projects beginning with s' 'todo-txt list +s' '+shared +sunflowers'
++test_todo_completion 'projects beginning with ro' 'todo-txt list +ro' '+roses'
++test_todo_completion 'projects beginning with x' 'todo-txt list +x' ''
+ 
+-test_todo_completion 'projects from done tasks beginning with h' 'todo.sh list +h' '+herbs'
+-test_todo_completion 'projects from done tasks beginning with sl' 'todo.sh list +sl' '+slack'
++test_todo_completion 'projects from done tasks beginning with h' 'todo-txt list +h' '+herbs'
++test_todo_completion 'projects from done tasks beginning with sl' 'todo-txt list +sl' '+slack'
+ 
+ test_done
+--- todotxt-cli-2.10.orig/tests/t6030-completion-tasks.sh
++++ todotxt-cli-2.10/tests/t6030-completion-tasks.sh
+@@ -16,12 +16,12 @@ x 2012-02-21 +herbs @oriental buy spices
+ x 2012-02-28 2012-02-21 +slack @home watch tv
+ 2012-02-28 +herbs buy cinnamon @grocer
+ EOF
+-test_todo_completion 'simple task' 'todo.sh list 1' '"1 # simple task"'
+-test_todo_completion 'remove projects and contents from task' 'todo.sh list 2' '"2 # notice the sunflowers"'
+-test_todo_completion 'keep priority' 'todo.sh list 3' '"3 # (B) smell the flower"'
+-test_todo_completion 'keep priority and remove timestamp' 'todo.sh list 4' '"4 # (C) mow the lawn"'
+-test_todo_completion 'keep done marker and remove done date' 'todo.sh list 5' '"5 # x buy spices"'
+-test_todo_completion 'keep done marker and remove timestamp and done date' 'todo.sh list 6' '"6 # x watch tv"'
+-test_todo_completion 'remove add date' 'todo.sh list 7' '"7 # buy cinnamon"'
++test_todo_completion 'simple task' 'todo-txt list 1' '"1 # simple task"'
++test_todo_completion 'remove projects and contents from task' 'todo-txt list 2' '"2 # notice the sunflowers"'
++test_todo_completion 'keep priority' 'todo-txt list 3' '"3 # (B) smell the flower"'
++test_todo_completion 'keep priority and remove timestamp' 'todo-txt list 4' '"4 # (C) mow the lawn"'
++test_todo_completion 'keep done marker and remove done date' 'todo-txt list 5' '"5 # x buy spices"'
++test_todo_completion 'keep done marker and remove timestamp and done date' 'todo-txt list 6' '"6 # x watch tv"'
++test_todo_completion 'remove add date' 'todo-txt list 7' '"7 # buy cinnamon"'
+ 
+ test_done
+--- todotxt-cli-2.10.orig/tests/t6040-completion-files.sh
++++ todotxt-cli-2.10/tests/t6040-completion-files.sh
+@@ -9,13 +9,13 @@ This test checks todo_completion of file
+ 
+ > dummy.txt
+ readonly FILES='done.txt dummy.txt report.txt todo.txt'
+-test_todo_completion 'all files after addto' 'todo.sh addto ' "$FILES"
+-test_todo_completion 'files beginning with d after addto' 'todo.sh addto d' 'done.txt dummy.txt'
+-test_todo_completion 'all files after listfile' 'todo.sh listfile ' "$FILES"
+-test_todo_completion 'all files after lf' 'todo.sh -v lf ' "$FILES"
+-test_todo_completion 'nothing after move' 'todo.sh move ' ''
+-test_todo_completion 'all files after move ITEM#' 'todo.sh move 1 ' "$FILES"
+-test_todo_completion 'all files after mv ITEM#' 'todo.sh mv 1 ' "$FILES"
+-test_todo_completion 'all files after move ITEM# DEST' 'todo.sh move 1 todo.sh ' "$FILES"
++test_todo_completion 'all files after addto' 'todo-txt addto ' "$FILES"
++test_todo_completion 'files beginning with d after addto' 'todo-txt addto d' 'done.txt dummy.txt'
++test_todo_completion 'all files after listfile' 'todo-txt listfile ' "$FILES"
++test_todo_completion 'all files after lf' 'todo-txt -v lf ' "$FILES"
++test_todo_completion 'nothing after move' 'todo-txt move ' ''
++test_todo_completion 'all files after move ITEM#' 'todo-txt move 1 ' "$FILES"
++test_todo_completion 'all files after mv ITEM#' 'todo-txt mv 1 ' "$FILES"
++test_todo_completion 'all files after move ITEM# DEST' 'todo-txt move 1 todo ' "$FILES"
+ 
+ test_done
+--- todotxt-cli-2.10.orig/tests/t6050-completion-addons.sh
++++ todotxt-cli-2.10/tests/t6050-completion-addons.sh
+@@ -64,11 +64,11 @@ removeCustomActions()
+ # Test resolution of the default TODO_ACTIONS_DIR.
+ #
+ makeCustomActions "$HOME/.todo.actions.d"
+-test_todo_completion 'all arguments' 'todo.sh ' "$ACTIONS $ADDONS $CONTAINED $OPTIONS"
+-test_todo_completion 'all arguments after option' 'todo.sh -a ' "$ACTIONS $ADDONS $CONTAINED $OPTIONS"
+-test_todo_completion 'all arguments beginning with b' 'todo.sh b' 'bar baz'
+-test_todo_completion 'all arguments beginning with f after options' 'todo.sh -a -v f' 'foobar'
+-test_todo_completion 'nothing after addon action' 'todo.sh foobar ' ''
++test_todo_completion 'all arguments' 'todo-txt ' "$ACTIONS $ADDONS $CONTAINED $OPTIONS"
++test_todo_completion 'all arguments after option' 'todo-txt -a ' "$ACTIONS $ADDONS $CONTAINED $OPTIONS"
++test_todo_completion 'all arguments beginning with b' 'todo-txt b' 'bar baz'
++test_todo_completion 'all arguments beginning with f after options' 'todo-txt -a -v f' 'foobar'
++test_todo_completion 'nothing after addon action' 'todo-txt foobar ' ''
+ removeCustomActions "$HOME/.todo.actions.d"
+ 
+ #
+@@ -76,7 +76,7 @@ removeCustomActions "$HOME/.todo.actions
+ #
+ mkdir  "$HOME/.todo"
+ makeCustomActions "$HOME/.todo/actions"
+-test_todo_completion 'all arguments with actions from .todo/actions/' 'todo.sh ' "$ACTIONS $ADDONS $CONTAINED $OPTIONS"
++test_todo_completion 'all arguments with actions from .todo/actions/' 'todo-txt ' "$ACTIONS $ADDONS $CONTAINED $OPTIONS"
+ removeCustomActions "$HOME/.todo/actions"
+ 
+ #
+@@ -86,7 +86,7 @@ makeCustomActions "$HOME/addons"
+ cat >> todo.cfg <<'EOF'
+ export TODO_ACTIONS_DIR="$HOME/addons"
+ EOF
+-test_todo_completion 'all arguments with actions from addons/' 'todo.sh ' "$ACTIONS $ADDONS $CONTAINED $OPTIONS"
++test_todo_completion 'all arguments with actions from addons/' 'todo-txt ' "$ACTIONS $ADDONS $CONTAINED $OPTIONS"
+ removeCustomActions "$HOME/addons"
+ 
+ test_done
+--- todotxt-cli-2.10.orig/tests/t6080-completion-path.sh
++++ todotxt-cli-2.10/tests/t6080-completion-path.sh
+@@ -3,7 +3,7 @@
+ 
+ test_description='Bash completion with different path functionality
+ 
+-This test checks that todo_completion can use a different path to todo.sh when
++This test checks that todo_completion can use a different path to todo-txt when
+ it is not accessible through PATH.
+ '
+ . ./test-lib.sh
+@@ -14,7 +14,7 @@ notice the sunflowers +sunflowers @outsi
+ stop
+ EOF
+ 
+-mv bin/todo.sh bin/todo2.sh
++mv bin/todo-txt bin/todo2.sh
+ test_expect_success 'todo2.sh executable' 'todo2.sh list'
+ 
+ # Define a second completion function that injects the different executable. In
+--- todotxt-cli-2.10.orig/tests/t6090-completion-aliases.sh
++++ todotxt-cli-2.10/tests/t6090-completion-aliases.sh
+@@ -4,7 +4,7 @@
+ test_description='Bash completion with different aliases functionality
+ 
+ This test checks that todo_completion can use a different configuration
+-when another todo.sh alias is defined that uses that configuration.
++when another todo-txt alias is defined that uses that configuration.
+ '
+ . ./test-lib.sh
+ 
+@@ -27,11 +27,11 @@ EOF
+ # equivalent and work fine.
+ todo1()
+ {
+-    todo.sh "$@"
++    todo-txt "$@"
+ }
+ todo2()
+ {
+-    todo.sh -d "$HOME/todo2.cfg" "$@"
++    todo-txt -d "$HOME/todo2.cfg" "$@"
+ }
+ 
+ # Ensure that the test fixture works as planned.
+@@ -52,7 +52,7 @@ EOF
+ #   complete -F _todo2 todo2
+ _todo2()
+ {
+-    local _todo_sh='todo.sh -d "$HOME/todo2.cfg"'
++    local _todo_sh='todo-txt -d "$HOME/todo2.cfg"'
+     _todo "$@"
+ }
+ 
+--- todotxt-cli-2.10.orig/tests/t6100-completion-help.sh
++++ todotxt-cli-2.10/tests/t6100-completion-help.sh
+@@ -13,8 +13,8 @@ make_action "aardvark"
+ readonly ACTIONS='add a addto addm append app archive command del rm depri dp do help list ls listaddons listall lsa listcon lsc listfile lf listpri lsp listproj lsprj move mv prepend prep pri p replace report shorthelp'
+ readonly ADDONS='aardvark zany'
+ 
+-test_todo_completion 'all actions after help' 'todo.sh help ' "$ACTIONS $ADDONS"
+-test_todo_completion 'all actions after command help' 'todo.sh command help ' "$ACTIONS $ADDONS"
+-test_todo_completion 'actions beginning with a' 'todo.sh help a' 'add a addto addm append app archive aardvark'
++test_todo_completion 'all actions after help' 'todo-txt help ' "$ACTIONS $ADDONS"
++test_todo_completion 'all actions after command help' 'todo-txt command help ' "$ACTIONS $ADDONS"
++test_todo_completion 'actions beginning with a' 'todo-txt help a' 'add a addto addm append app archive aardvark'
+ 
+ test_done
+--- todotxt-cli-2.10.orig/tests/test-lib.sh
++++ todotxt-cli-2.10/tests/test-lib.sh
+@@ -481,6 +481,7 @@ test_init_todo () {
+ 	# Install latest todo.sh
+ 	mkdir bin
+ 	ln -s "$TEST_DIRECTORY/../todo.sh" bin/todo.sh
++	ln -s "$TEST_DIRECTORY/../todo.sh" bin/todo-txt
+ 
+ 	# Initialize a hack date script
+ 	TODO_TEST_REAL_DATE=$(which date)
+--- todotxt-cli-2.10.orig/todo_completion
++++ todotxt-cli-2.10/todo_completion
+@@ -16,7 +16,7 @@ _todo()
+         mv prepend prep pri p replace report shorthelp"
+     local -r MOVE_COMMAND_PATTERN='^(move|mv)$'
+ 
+-    local _todo_sh=${_todo_sh:-todo.sh}
++    local _todo_sh=${_todo_sh:-todo-txt}
+     local completions
+     if [ $COMP_CWORD -eq 1 ]; then
+         completions="$COMMANDS $(eval TODOTXT_VERBOSE=0 $_todo_sh command listaddons) $OPTS"
+@@ -83,16 +83,16 @@ _todo()
+     COMPREPLY=( $( compgen -W "$completions" -- $cur ))
+     return 0
+ }
+-complete -F _todo todo.sh
++complete -F _todo todo-txt
+ 
+-# If you define an alias (e.g. "t") to todo.sh, you need to explicitly enable
++# If you define an alias (e.g. "t") to todo-txt, you need to explicitly enable
+ # completion for it, too:
+ #complete -F _todo t
+ # It is recommended to put this line next to your alias definition in your
+ # ~/.bashrc (or wherever else you're defining your alias). If you simply
+ # uncomment it here, you will need to redo this on every todo.txt update!
+ 
+-# If you have renamed the todo.sh executable, or if it is not accessible through
++# If you have renamed the todo-txt executable, or if it is not accessible through
+ # PATH, you need to add and use a wrapper completion function, like this:
+ #_todoElsewhere()
+ #{
+@@ -104,10 +104,10 @@ complete -F _todo todo.sh
+ # If you use aliases to use different configuration(s), you need to add and use
+ # a wrapper completion function for each configuration if you want to complete
+ # fron the actual configured task locations:
+-#alias todo2='todo.sh -d "$HOME/todo2.cfg"'
++#alias todo2='todo-txt -d "$HOME/todo2.cfg"'
+ #_todo2()
+ #{
+-#    local _todo_sh='todo.sh -d "$HOME/todo2.cfg"'
++#    local _todo_sh='todo-txt -d "$HOME/todo2.cfg"'
+ #    _todo "$@"
+ #}
+ #complete -F _todo2 todo2
