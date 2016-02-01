@@ -38,7 +38,7 @@ Copyright: (c) 2009-2014 Archimedes Trajano <arch@trajano.net>
            (c) 2009-2014 jmoore <josh@glencoesoftware.com>
            (c) 2009-2014 mcguiremkm <mcguiremkm@gmail.com>
            (c) 2009-2014 nthorne <notrupertthorne@gmail.com>
-License: GPL-3
+License: GPL-3+
 
 Files: debian/*
 Copyright: 2015 Ondřej Nový
