@@ -1,0 +1,20 @@
+#!/bin/bash
+#-----------------------
+# Testing utilities help
+#-----------------------
+set -e
+
+HOME="$ADTTMP"
+
+mkdir -p $HOME/.todo-txt
+CMDS=( 'todo-txt' )
+for cmd in "${CMDS[@]}"; do
+    if ! $cmd -h 2>&1 >$ADTTMP/out ; then
+        echo "ERROR, ${cmd}:"
+        cat "$ADTTMP/out"
+        exit 1
+    else
+        echo "OK: ${cmd}"
+    fi
+done
+exit 0
