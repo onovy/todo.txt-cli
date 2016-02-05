@@ -5,6 +5,11 @@ DESTDIR=$(CURDIR)/debian/todotxt-cli
 %:
 	dh $@
 
+override_dh_clean:
+	dh_clean
+
+	rm -f VERSION-FILE
+
 override_dh_auto_install:
 	install -D --mode=755 todo.sh $(DESTDIR)/usr/bin/todo-txt
 	install -D --mode=644 todo_completion $(DESTDIR)/usr/share/bash-completion/completions/todo-txt
