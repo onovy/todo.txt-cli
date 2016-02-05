@@ -1,0 +1,3621 @@
+commit 837ce229372b42eca83452789329fc8c598dcbb7
+Author: Gina Trapani <ginatrapani@gmail.com>
+Date:   Fri Dec 6 00:38:32 2013 -0800
+
+    Add new config vars enabled in 07b50a07e0007ac43327d31568b5a7cc26f3e0f2
+
+commit 7c92f46c25e631a8c2dad3a55f8c0dfa5657dafe
+Author: nthorne <notrupertthorne@gmail.com>
+Date:   Fri Nov 22 23:20:55 2013 +0100
+
+    Allow for placing addons in subfolders.
+    
+    Addons can be placed in subfolders with the same name as the action,
+    in order to be able to e.g. clone git repos into the TODO_ACTIONS_DIR
+    rather than having to download addons and manage updates manually.
+    
+    Closes #120
+
+commit 07b50a07e0007ac43327d31568b5a7cc26f3e0f2
+Author: Matt Wozniski <godlygeek@gmail.com>
+Date:   Fri Nov 15 17:58:47 2013 -0500
+
+    Allow coloring contexts and projects independently
+    
+    Because @contexts and +projects are metadata as much as they are text,
+    it can be nice to highlight them independently of the coloring of the line
+    that contains them.  This is tough to do correctly in
+    a TODOTXT_FINAL_FILTER because doing it at that layer requires
+    re-parsing the text of the line to find the appropriate PRI_$x color to
+    reset to after coloring the word, or trying to reverse engineer where
+    the color codes inserted by todo.sh end and the user's text begins (and
+    vice versa).
+    
+    Closes #119
+
+commit 745f5d51794f86949d645ed2a90c456aa2d1babb
+Merge: 236069c ce365df
+Author: Gina Trapani <ginatrapani@gmail.com>
+Date:   Thu Dec 5 23:06:37 2013 -0800
+
+    Merge pull request #111 from mgarrido/global_opts
+    
+    Allow the use of a global config file
+
+commit 236069c519bea392981a1f9759acc3a080cb8334
+Author: Gina Trapani <ginatrapani@gmail.com>
+Date:   Thu Dec 5 21:16:21 2013 -0800
+
+    Update build status
+
+commit e60c14ab2bba99cc5fe61f3ddd96c009aec49cb3
+Merge: 1f410e4 33eb234
+Author: Gina Trapani <ginatrapani@gmail.com>
+Date:   Thu Dec 5 20:35:31 2013 -0800
+
+    Merge pull request #123 from joshmoore/24pr-travis-yml
+    
+    Enable Travis-CI
+
+commit 33eb234048aaac647ac047f4d54e8a608760b58b
+Author: jmoore <josh@glencoesoftware.com>
+Date:   Tue Dec 3 20:13:42 2013 +0100
+
+    Add Build Status to README
+
+commit 42e7a079f85a6f4782a6ecff7f8d0e21a05ee5f5
+Author: jmoore <josh@glencoesoftware.com>
+Date:   Tue Dec 3 19:59:44 2013 +0100
+
+    Add .travis.yml
+    
+    `make dist && sudo make install` are used
+    to install to /usr/local. `make test` then
+    verifies the changes.
+
+commit 1f410e4066b4c7ed186f2d262b08146b16ee5b78
+Merge: d8ceb46 07821f9
+Author: Gina Trapani <ginatrapani@gmail.com>
+Date:   Tue Nov 19 14:08:01 2013 -0800
+
+    Merge pull request #116 from inkarkat/enh-allow-null-files
+    
+    Allow configuring null data files and then don't create them.
+
+commit d8ceb46364f7873648c399ba01d7f0fb3585ecfd
+Merge: 111afe6 0d139d2
+Author: Gina Trapani <ginatrapani@gmail.com>
+Date:   Fri Nov 8 13:14:49 2013 -0800
+
+    Merge pull request #117 from pdclark/master
+    
+    Fix changelog link in readme
+
+commit 0d139d20274ca9d28614f2b143404acee3936e7d
+Author: Paul Clark <github@pdclark.com>
+Date:   Tue Nov 5 23:26:14 2013 +0000
+
+    Fix changelog link in readme
+
+commit 07821f9cff6a37eddca05a66bb69d8f289c547f1
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Tue Nov 5 13:05:38 2013 +0100
+
+    Simplify empty data file creation.
+    
+    No need to use the external cp command; shell redirection will create an
+    empty file for us.
+
+commit 2faf072cf721e60b57708a5cc2dbedecfd80fecb
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Tue Nov 5 13:02:40 2013 +0100
+
+    ENH: Allow configuring null data files and then don't create them.
+    
+    Request from exatto (http://article.gmane.org/gmane.comp.diary.todotxt/4699), who doesn't want to use done.txt and report.txt.
+    
+    Also consider character devices (-c; /dev/null is one) in the file existence checks so that no empty file is then created.
+
+commit ce365df67ce84cd23abfd214238168b5041036c8
+Author: Manuel J. Garrido <manuel.garrido@gmail.com>
+Date:   Mon Jun 24 10:32:42 2013 +0200
+
+    Allow the use of global config file
+    
+    If not found elsewhere, look for the config file in /etc/todo/config.
+    `make install` installs a global config file, setting TODO_DIR=~/.todo.
+    todo.sh creates TODO_DIR if it doesn't exist.
+
+commit 93d8e16d5039a44bbc847b457ab2a09c53625877
+Author: Manuel J. Garrido <manuel.garrido@gmail.com>
+Date:   Mon Jun 24 09:47:48 2013 +0200
+
+    Install using 'install' instead of 'cp'. Install 'todo.sh' instead of 'todo'
+
+commit 111afe6958bd470aaf761c3588cbf20c271e4961
+Merge: 92f7b72 629a301
+Author: Gina Trapani <ginatrapani@gmail.com>
+Date:   Sat Jun 15 20:55:22 2013 -0700
+
+    Merge pull request #101 from Thann/grep_options_fix
+    
+    ensure GREP_OPTIONS doesn't break listproj output
+
+commit 92f7b724e6f111668dfb4611327239de5ae8fbd9
+Merge: 4a7dd85 6473802
+Author: Gina Trapani <ginatrapani@gmail.com>
+Date:   Sat Jun 15 20:51:23 2013 -0700
+
+    Merge pull request #90 from danohuiginn/master
+    
+    Make install
+
+commit 629a301d436f4afdcaed33301733235e736b0e43
+Author: Jon Knapp <burtonboarder8@gmail.com>
+Date:   Sat Feb 2 16:15:29 2013 -0800
+
+    Added test case for GREP_OPTIONS
+
+commit 4a7dd852a6a3e1d00c1d04d5c995a9998018442d
+Merge: e1d6b91 79845c8
+Author: Gina Trapani <ginatrapani@gmail.com>
+Date:   Fri Feb 1 19:43:54 2013 -0800
+
+    Merge pull request #99 from benjaminoakes/master
+    
+    Add CONTRIBUTING for GitHub integration
+
+commit ec9613e19ed400fffe7913d96ea8a9dda9e33406
+Author: Jon Knapp <jon.knapp@rightscale.com>
+Date:   Fri Feb 1 11:03:24 2013 -0800
+
+    ensure GREP_OPTIONS doesn't break listproj output
+
+commit 79845c8eb11fc9b506efb3db9ea712be221307d1
+Author: Benjamin Oakes <hello@benjaminoakes.com>
+Date:   Sun Jan 27 17:02:58 2013 -0600
+
+    Also include title
+
+commit b853198c3a2f07d791560fd8a026d87aa618cf47
+Author: Benjamin Oakes <hello@benjaminoakes.com>
+Date:   Sun Jan 27 17:01:11 2013 -0600
+
+    Add CONTRIBUTING based on #15
+    
+    https://github.com/ginatrapani/todo.txt-cli/issues/15
+
+commit e1d6b91fa3016580e91647573c3dec47f23a39ac
+Merge: da68336 8ff7910
+Author: Gina Trapani <ginatrapani@gmail.com>
+Date:   Thu Aug 30 10:31:16 2012 -0700
+
+    Merge pull request #94 from inkarkat/fix-shorthelp-custom-config
+    
+    Fix shorthelp custom config
+
+commit 8ff79102a5119736b4eb38ed202a31706ffabfa9
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Thu Aug 30 13:16:02 2012 +0200
+
+    ENH: Handle -h, shorthelp and help when a Fatal Error happens.
+    
+    The user may need the help to solve any fatal error that appears while todo.sh isn't properly set up. As the help actions do not depend on any setting that the fatal errors check, we can still invoke them.
+    
+    Factor out dieWithHelp() and use that for printing the fatal errors.
+
+commit 8d8ef812a2082ff26777d061f6c0fe9c43037d6a
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Thu Aug 30 12:38:54 2012 +0200
+
+    FIX: Short help -h inaccessible when custom config is used.
+    
+    When short-circuiting the option parsing, the OPTIND must be adapted, too, so that the getopts processing loop is quit correctly.
+
+commit 50aea1e4f001bf988d851f5f4e45b8e61981f204
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Thu Aug 30 12:20:09 2012 +0200
+
+    Tests: Add basic coverage of -h / shorthelp.
+    
+    For a start, this is basically an adapted version of tests/t2100-help.sh.
+
+commit da683366f4a3be6ad6f4c556dae47a0d5c1d3172
+Merge: 7b5c983 e48ad81
+Author: Gina Trapani <ginatrapani@gmail.com>
+Date:   Sat May 12 09:59:44 2012 -0700
+
+    Merge pull request #89 from inkarkat/individual-help-enhancement
+    
+    Individual help enhancement
+
+commit e48ad81ecc2af64a03b8bd427ffff8d065723a8c
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Fri May 11 21:18:43 2012 +0200
+
+    FIX: Built-in action help for OS X.
+    
+    POSIX sed doesn't support regex branches; I don't want to switch to modern regexp (via -E), since that makes more characters special. Rather, expand the alternatives into two sed commands.
+
+commit 7b5c983bb6ff69b84973099f1a38eee64ce9d211
+Merge: f67f630 6a3ddad
+Author: Gina Trapani <ginatrapani@gmail.com>
+Date:   Fri May 11 09:58:23 2012 -0700
+
+    Merge pull request #83 from inkarkat/testlib-parse-enh
+    
+    Testlib parse enhancements
+
+commit f67f630466840dfc9b129bfa2bcc2a161bb2cd0c
+Merge: fe27b10 e5e31b0
+Author: Gina Trapani <ginatrapani@gmail.com>
+Date:   Fri May 11 09:41:56 2012 -0700
+
+    Merge pull request #82 from inkarkat/listcon-filters
+    
+    Accept filters for listcon, too.
+
+commit fe27b107653afb135c2530b38165f23c2e12329b
+Merge: 137140a 3b0309d
+Author: Gina Trapani <ginatrapani@gmail.com>
+Date:   Fri May 11 09:23:45 2012 -0700
+
+    Merge pull request #84 from inkarkat/config-backtick-check
+    
+    Config backtick check
+
+commit c0c93c8c0c1849ddb2492910cafb6dad4a3468ad
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Fri May 11 09:05:44 2012 +0200
+
+    FIX: Adapt test for OS X.
+    
+    POSIX sed doesn't understand the \w atom; use [A-Z] instead; it's also more precise.
+
+commit 137140a542d7d1d595a256be322faec69b827272
+Merge: 322c6b9 f45bbd1
+Author: Gina Trapani <ginatrapani@gmail.com>
+Date:   Thu May 10 20:55:15 2012 -0700
+
+    Merge pull request #85 from inkarkat/replace-fixes
+    
+    FIX: Replacement with priority and date doesn't replace existing date.
+
+commit 322c6b95d6b7ef0d14bb07793dfe92406684368e
+Merge: 28e8a4c d2c44e9
+Author: Gina Trapani <ginatrapani@gmail.com>
+Date:   Thu May 10 16:58:40 2012 -0700
+
+    Merge pull request #87 from inkarkat/complete-bash31-fix
+    
+    FIX: todo_completion problem with Bash 3.1
+
+commit 28e8a4cd8b8880b868e11d6116dc9ddd9843b470
+Merge: 7f1bdbf 736e69b
+Author: Gina Trapani <ginatrapani@gmail.com>
+Date:   Thu May 10 16:41:51 2012 -0700
+
+    Merge pull request #88 from inkarkat/allow-post-filter-override
+    
+    Allow use of post_filter_command for listall and listpri, too.
+
+commit 7f1bdbf3d91f745a73a6e6ae67a5e4268fc98b8e
+Merge: ebe6a40 a548199
+Author: Gina Trapani <ginatrapani@gmail.com>
+Date:   Thu May 10 16:19:32 2012 -0700
+
+    Merge pull request #91 from inkarkat/complete-tasks-date-fix
+    
+    BUG: completion of task number didn't remove add date.
+
+commit a5481990fdc7f462634f308800be7386ef8aec3b
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Tue May 8 11:10:22 2012 +0200
+
+    completion: Add recommendation about where to put alias customization.
+    
+    There was a discussion on the mailing list about upgrades and where to put it.
+
+commit 38d75afeffd2e391f84869571a0ab8e0b13a24ba
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Tue May 8 10:55:00 2012 +0200
+
+    BUG: completion of task number didn't remove add date.
+    
+    Need to make match of preceding priority optional.
+    Also tighten patterns for priority and done marker by anchoring them to the front, as the leading task number has already been substituted away.
+
+commit 64738026446bdf0b0308fb4331eab5a92688eb03
+Author: Dan O'Huiginn <daniel@ohuiginn.net>
+Date:   Sat Apr 28 12:49:19 2012 +0100
+
+    Make install command
+
+commit 6a3ddad78729af4386c4adc68ff69581e494349c
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Fri Apr 27 21:58:07 2012 +0200
+
+    FIX: test-lib: Print differences when test_expect_output fails.
+    
+    When the command-under-test fails with a non-zero exit code, neither the different exit code nor any output differences are printed. Also, there's a lot of duplication between test_expect_output and test_expect_code_and_output. So, let's fix both by delegating the first to the latter.
+
+commit 7acb52119096c5e5a1615c477069561f9060da5c
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Fri Apr 27 14:29:29 2012 +0200
+
+    Add action argument for help to todo_completion.
+    
+    Note that this is not perfect, as it only handles completing a single action after "help", but that should over the most important use case.
+
+commit f2b97340474700f1eff53fae97f6b80bf32da2a7
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Fri Apr 27 13:40:52 2012 +0200
+
+    FIX: Always return success after help.
+    
+    Usually (i.e. when a pager is available), the help() output is piped through the pager, and then the return code will be the one of the pager. So the exit 1 at the end of help() doesn't make much sense, and should be abolished for consistency.
+
+commit 97035d34257b8723faea58da169d732f718c7ebc
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Fri Apr 27 13:37:14 2012 +0200
+
+    ENH: Print usage help for all passed actions.
+    
+    Extend the support for specific usage help to built-in actions.
+
+commit 99e5e57a75e5a6f938882d231d0b53212f7c42d4
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Fri Apr 27 12:42:10 2012 +0200
+
+    Refactoring: Extract make_action into actions-test-lib.sh.
+    
+    This reduces the duplication in the individual test files.
+
+commit 42424d58817383d94fef85b6ba301dc3bb0cfd7d
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Fri Apr 27 11:48:01 2012 +0200
+
+    ENH: Print usage help for custom action.
+    
+    Currently, the only way to get usage help for a custom action is to use "todo.sh help" and scroll / search for the action name. (Or try to call the action without / with invalid parameters to hopefully get a one-line syntax summary.)
+    This extends the help command to print the usage of optionally passed custom action names.
+
+commit 7ab90476f73d89dba2d0327006daf3f452edafbe
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Fri Apr 27 11:34:46 2012 +0200
+
+    Tests: Add test for ordinary help.
+
+commit fac5533b9676495ee763f3565920871a8c45ae97
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Fri Apr 27 09:25:00 2012 +0200
+
+    Tests: Add test for listaddons.
+
+commit 736e69bd6c165584ed75cae979477682c0c8b93a
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Wed Apr 25 14:48:09 2012 +0200
+
+    Allow use of post_filter_command for listall and listpri, too.
+    
+    For ls / _list(), custom add-ons can use post_filter_command for additional filtering before the highlighting is applied. Let's allow that for listall and listpri, too, although they employ post_filter_command themselves.
+
+commit d2c44e9ffe1cb4dc1d262b2d13fb65d8440ea287
+Author: mcguiremkm <mcguiremkm@gmail.com>
+Date:   Wed Apr 25 09:33:54 2012 +0200
+
+    FIX: todo_completion problem with Bash 3.1
+    
+    Regexp matching changed from 3.1 to 3.2. Make it work for Bash 3.1 by using an intermediate variable, as in 394c4c748ac7fe9c4840536eb1ac28aa9a03853f.
+    Cp. http://tech.groups.yahoo.com/group/todotxt/message/4211
+
+commit f45bbd1a1d33cd4700f3b90f3322b0c51e52828e
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Thu Apr 19 14:19:30 2012 +0200
+
+    Minor: Move cleaninput call closer to sed command.
+
+commit e0b93e48fb6af56c171b6b684681728ab552d45c
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Thu Apr 19 14:12:35 2012 +0200
+
+    Refactoring: Extract duplicated regexp for priority and date.
+
+commit 24d0fb003a8ef486c37a53cb80d28872922e206c
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Thu Apr 19 14:08:39 2012 +0200
+
+    FIX: Replacement with priority and date doesn't replace existing date.
+
+commit 3b0309d9bc5b7d6b6b6bec7efab8b4b25280cb1d
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Sun Apr 15 10:37:41 2012 +0200
+
+    Replace backticks in config with $(...)
+    
+    This applies e24777fa2cf40d2a50b27478c841f1381f8f4a22 to todo.cfg, too, and adds a verification to the existing test.
+    
+    Note: Because todo.cfg is preprocessed by test-lib, we use the original config from the working copy, not the copy inside the test fixture.
+
+commit b21d16878f0ec41e0c5e1841fa2475280ffeb296
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Sun Apr 15 10:35:17 2012 +0200
+
+    Tests: Hard-code location of todo.sh.
+    
+    As todo.sh is placed by test-lib at a fixed place, avoid the lookup through which.
+
+commit 3e82f3ca56aa20c0dc593f613c167e12b331be51
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Sun Apr 15 10:33:51 2012 +0200
+
+    Tests: Extract backtick_check().
+
+commit e5e31b0f75fb7c58113f4be3e09a3e8d52c6b7a7
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Fri Apr 13 21:16:33 2012 +0200
+
+    Refactoring: Extract listWordsWithSigil() from listcon and listproj.
+
+commit 35f9c4276cbcedbbcd5a7ffb6f4fbad4029f5f96
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Fri Apr 13 16:54:40 2012 +0200
+
+    test-lib: Allow expected output with empty lines.
+    
+    An empty line is used to delimit test commands in test_todo_session. (This wasn't properly reflected in the usage comment, fixed that, too.) This prevents us from testing commands that include empty lines. (Currently, there is no such output in todo.sh, but custom add-ons may have this.)
+    Instead of forcing the test to filter out the empty lines, extend the syntax to allow empty lines in the expected output by escaping them with a single backslash. (When redirecting via <<EOF, the backslash itself must be escaped = doubled; better use <<'EOF'.)
+
+commit 661dac0cfb22094850593d630136327b4de51ecc
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Fri Apr 13 16:47:04 2012 +0200
+
+    test-lib: Avoid eating leading whitespace in expected output.
+    
+    Currently, todo.sh produces no indented output, so this hasn't affected tests so far. I found this while testing one of my custom actions with the test-lib.
+    By unsetting IFS, the read command won't strip off leading and trailing whitespace while parsing the test session definition.
+
+commit d7056c5e1eb9bc3c9be1c81fa0df65c2175c054c
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Fri Apr 13 10:51:43 2012 +0200
+
+    FIX: Mention filter capability in long help for listproj.
+    
+    This was forgotten in the original enhancement in b824479.
+
+commit 92322e7064bd4f6a7c98cf4cce367b92df3cc38c
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Fri Apr 13 10:47:56 2012 +0200
+
+    Accept filters for listcon, too.
+    
+    This has been implemented for listproj already, for consistency in use and implementation, the same should be available for listcon, too.
+
+commit ebe6a403c8da4a0bb1ae9527d26f2101a6109bea
+Merge: 94f7709 a6fed99
+Author: Gina Trapani <ginatrapani@gmail.com>
+Date:   Mon Mar 26 11:56:04 2012 -0700
+
+    Merge pull request #81 from todb-r7/master
+    
+    .gitignore for local data files.
+
+commit a6fed991e56293489ec4dcf814494939a5ef7bda
+Author: Tod Beardsley <todb@metasploit.com>
+Date:   Mon Mar 19 11:00:51 2012 -0500
+
+    Ignore user data.
+    
+    If you run out of git checkouts, should probably ignore the todo.txt
+    data file (and friends).
+
+commit 94f770926b1f7354538afbf6dc34b96b6b8ad094
+Merge: 79f4287 322f307
+Author: Gina Trapani <ginatrapani@gmail.com>
+Date:   Thu Mar 1 10:26:17 2012 -0800
+
+    Merge pull request #80 from inkarkat/complete-enhancements
+    
+    Complete enhancements
+
+commit 322f3075d2424c6ac021d5c3fd22aadf51310fbe
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Wed Feb 29 09:00:35 2012 +0100
+
+    FIX: task number completion doesn't work on OS X.
+    
+    The recently added tests revealed that. Because of the sed \+ bound. As in  f3fc18af6b80797e44903521a994218f98f9c022, fall back to the \{1,\} basic regexp.
+
+commit bc81db2f2b967e04bdb634cb09692844a8a0e2fd
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Tue Feb 28 14:55:27 2012 +0100
+
+    ENH: Better completion for custom add-ons via new listaddons command.
+    
+    The todo_completion had the problem that it didn't consider the todo.cfg itself for the location of TODO_ACTIONS_DIR, it just tried the default location or a globally exported config value. With the injection of custom configuration now in place, we can actually delegate the listing to todo.sh itself.
+    The added built-in "listaddons" command is used for that; it may also be helpful for troubleshooting or to find out about available add-ons. (But the help / shorthelp commands offer more information.)
+    
+    Additionally, completion is now more precise; only executable actions and no subdirs are listed now; this is also covered by the enhanced test.
+    
+    The last bonus: The custom add-on actions are now only determined when there's actually completion of commands.
+
+commit 6259cdb6dac805674d1f41354b5c311e879c5d54
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Tue Feb 28 10:27:28 2012 +0100
+
+    Add test for custom add-on action completion.
+
+commit f76b6d5210ba831b97b72e457aa8f2bb93219a73
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Tue Feb 28 10:02:42 2012 +0100
+
+    Add test for todo file completion.
+
+commit c1ad7f3560dfae3261b08ee79ce015e94661191e
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Tue Feb 28 09:50:00 2012 +0100
+
+    Add more test cases for arguments and options completion.
+
+commit a777b266ed98b4da668aa65a7a02851ddd16f1ae
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Tue Feb 28 09:41:53 2012 +0100
+
+    Add test for task number completion.
+
+commit ebce735d04e089cf42ece6427063ad63e6db5d20
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Tue Feb 28 09:38:57 2012 +0100
+
+    test-lib: Allow completions containing whitespace.
+    
+    This is necessary to test the completion of task text.
+
+commit e5a308eb03fcbccc635c9dfbdbaf8d8f3b13d27e
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Tue Feb 28 09:16:19 2012 +0100
+
+    test-lib: Also document test_expect_code.
+
+commit e600a2162bb3bb79218ded4bd66a2ea129408370
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Mon Feb 27 14:19:11 2012 +0100
+
+    ENH: completion can use different todo.sh locations and configurations.
+    
+    This was previously not supported; todo_completion always used plain todo.sh from the PATH. Now it's possible to override the used executable (and configuration used through _todo_sh, set from a completion function wrapper.
+    
+    Cp. http://tech.groups.yahoo.com/group/todotxt/message/4003
+
+commit 3d0a4d0b30efedd9159ae621766ea05ed74e2c14
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Mon Feb 27 13:38:58 2012 +0100
+
+    test-lib: Add test_todo_custom_completion variant.
+    
+    This extension of test_todo_completion additionally takes the completion function to use, so that customized completions for todo.sh aliases can be tested.
+
+commit 79f428779c8711e9bdc7737625dbb5a603083aff
+Merge: fbee428 c1dcd0e
+Author: Gina Trapani <ginatrapani@gmail.com>
+Date:   Tue Feb 28 13:53:54 2012 -0800
+
+    Merge pull request #77 from inkarkat/complete-from-done
+    
+    Complete from done
+
+commit c1dcd0ed7860c45c4d205f4a7bdbaadf86d543a9
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Wed Feb 22 09:19:04 2012 +0100
+
+    test-lib: Also check completion exit code.
+    
+    The completion may unexpectedly abort somewhere.
+    
+    Additionally, reformat the failure messages (don't prepend a "*", this should be reserved to mark the individual test runs) and use "compreply" instead of "output", so that it's already clear from the diff output that the completion is being tested.
+
+commit c9d1993dc8eb7b7c99dabfe6d72dd580a57a7875
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Wed Feb 22 08:43:47 2012 +0100
+
+    test-lib: Avoid empty line in diff when no completion.
+    
+    There should be a trailing newline when there are completions (to avoid diff complaining about "no trailing newline", but not when there are no completions at all.
+
+commit 451dbdda6b597372ebd250aa60f12531351d8114
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Tue Feb 21 17:05:52 2012 +0100
+
+    Merge duplicate test files for listproj.
+    
+    t1260-listprj.sh was accidentally created; the tests should be in t1320-listproj.sh.
+
+commit 060e81aa056def374ca38daf0dd434e391440bf1
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Tue Feb 21 16:52:58 2012 +0100
+
+    ENH: completion offers projects and contexts from done.txt.
+    
+    This is useful when there are no open projects/contexts any more, but one wants to re-use an existing name.
+
+commit 296bad334ddeb0fb84176461453b1670841e145b
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Tue Feb 21 15:11:08 2012 +0100
+
+    Add tests for project and context completion.
+
+commit 3b90d09b27aeeaf325331b9db5d77e265ead4676
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Tue Feb 21 14:16:23 2012 +0100
+
+    Add testing of todo_completion.
+    
+    Before adding any more features to todo_completion, I feel like I need test coverage, so this is a first stab at testing the completion results, via a new test function test_todo_completion.
+    Some basic tests showcase the capabilities.
+    
+    Note: test-lib.sh now uses arrays, therefore all tests must use /bin/bash, not /bin/sh to avoid errors when sourcing test-lib. For consistency with todo.sh, we should have used Bash everywhere, anyway. Also note that t2000-multiline.sh needs some more quoting to avoid "Bash: ambiguous redirect" errors.
+
+commit 46afb7f46ac1163b471e824934f7900e740d431c
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Tue Feb 21 12:30:01 2012 +0100
+
+    ENH: TODOTXT_SOURCEVAR enables different source file for listproj.
+
+commit 9e13dfd2907d92bf6b400afb5edcbd65c4eb3c44
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Tue Feb 21 12:11:45 2012 +0100
+
+    ENH: TODOTXT_SOURCEVAR enables different source file for listcon.
+    
+    To be used by todo_completion (to offer candidates from done.txt when there are no matches in todo.txt), and maybe by custom addons.
+
+commit fbee428e754c839c769ccc71fc3489ac3d7a709a
+Merge: ad1ca6c 3b960a2
+Author: Gina Trapani <ginatrapani@gmail.com>
+Date:   Tue Feb 21 11:44:37 2012 -0800
+
+    Merge pull request #76 from inkarkat/reintroduce-mawk-support
+    
+    Revert to safer POSIX AWK regexp.
+
+commit 3b960a2e3c4cdb9a495c8563ade3fb35c824efa9
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Thu Nov 3 18:37:36 2011 +0100
+
+    Revert to safer POSIX AWK regexp.
+    
+    AWK from Ubuntu 8.04 (mawk) doesn't support [[:space:]]; so for backwards compatibility use a plain ASCII space instead.
+
+commit ad1ca6c2c90d89a3c6c76c2ee0d3d4f645e028ed
+Merge: 36e018f be0a026
+Author: Gina Trapani <ginatrapani@gmail.com>
+Date:   Tue Feb 14 21:59:10 2012 -0800
+
+    Merge pull request #75 from inkarkat/rid-tmp-file
+    
+    Split up _list() and get rid of $TMP_FILE and cleanup().
+
+commit 36e018fd869475bbfd9b7e98e23c2ee8e1eee46e
+Merge: 7485836 dfec12e
+Author: Gina Trapani <ginatrapani@gmail.com>
+Date:   Tue Feb 14 21:58:26 2012 -0800
+
+    Merge pull request #74 from inkarkat/listpri-pri-range
+    
+    ENH: Allow listpri filtering with priority ranges.
+
+commit 74858365f6d96016dbbb983048e3f171e4d8eb91
+Merge: 9e38fa1 c31716a
+Author: Gina Trapani <ginatrapani@gmail.com>
+Date:   Tue Feb 14 20:55:28 2012 -0800
+
+    Merge pull request #73 from inkarkat/testlib-enhancements
+    
+    Testlib enhancements
+    
+    As the vast majority of tests uses the todo.sh output to verify its correctness, output differences should always be shown, not just in verbose mode.
+    
+    This change removes the output redirection and check for exit code from the command-under-test, so as another benefit, these "housekeeping commands" are now kept off the test log.
+    
+    Also, by using a separate function for exit code assertion, this can now report both differences in output and exit code (and not suppress the former any more.)
+    
+    (Note: To see any of this, you need to temporarily introduce some test failures.)
+    
+    Finally, I've added color highlighting for the aggregate test report (as in test-lib), because it didn't stood out against the colored test results, so that I often missed the crucial summary.
+
+commit be0a0265d11565eaf28ef1429b2ee0d63bfe3808
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Thu Jan 26 16:21:46 2012 +0100
+
+    Also get rid of TMP_FILE in todo.cfg.
+    
+    There's a slight chance that some add-on has used this (undocumented, unofficial) configuration value for its own purposes (and maybe also relied on the unexposed cleanup() infrastructure), but detecting and fixing that problem (by moving the cleanup into the add-on itself) is pretty straightforward.
+
+commit cf7f7531be849eca431a9935862cad9ed1f34625
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Thu Jan 26 15:53:46 2012 +0100
+
+    Break up _list(), get rid of TMP_FILE.
+    
+    Extract a new function _format() (and getPadding(), both also exported for add-ons) from _list(), which includes the main formatting and filtering pipeline, without the file handling and verbose summary. This can receive the todo file via stdin, so the listall action is able to format the concatenated files without going through a temporary file.
+    
+    Eventually, after further refactorings, _format() could be used for actual formatted verbose messages in all commands; currently, the raw, unformatted task is printed.
+
+commit 28ec5a06f21b598ab88d0c0895097779a42ce2f3
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Thu Jan 26 14:48:29 2012 +0100
+
+    Get rid of cleanup, only use TMP_FILE in listall.
+    
+    After the recent refactorings, the temporary file is only needed for the listall action. Therefore, the creation-checks and eventual cleanup can be restricted to the listall action, which should slightly speed up the overall script execution.
+
+commit dfec12e2a4437549ffb8ada0f752bd599cca8138
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Thu Jan 26 12:47:59 2012 +0100
+
+    ENH: Allow listpri filtering with priority ranges.
+    
+    So far, the listpri action only supports a single priority. Allowing priority ranges (e.g. todo.sh listpri A-C @work) is a simple but useful enhancement.
+    
+    Note: The syntax extension only clashes with the [TERM] filtering in a few corner cases, and this can be worked around (e.g. "todo.sh listpri A-Z A-Z" lists all prioritized tasks containing the text A-Z).
+
+commit c31716af470ff9267b12965288e967aadecf5aad
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Thu Jan 26 12:15:26 2012 +0100
+
+    test-report: Use color highlighting as in test-lib.
+    
+    The test aggregate results are easy to miss when running the entire test suite via "make test", as the status of the last test case is highlighted, but the aggregate results appear in an unformatted, uncolored block of text.
+    Copy the say_color() function from test-lib.sh. (Sorry for the duplication, I found no simple way to import or share just this piece of functionality without adding much complexity.)
+    Successes, errors and broken summaries will now be highlighted in the appropriate colors (unless --no-color is given or output is not to a terminal), but only if the number is more than zero.
+
+commit ebe9fb868b9d07ddcb5823f5d6beb4d99d93bfb1
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Wed Jan 25 15:45:35 2012 +0100
+
+    test-lib: Show full todo.sh output in verbose mode.
+    
+    Now that differences in the output (and exit code) are already printed by default, we can make the verbose mode actually "verbose" by including all todo.sh output generated during the test run. This may help in reviewing the tests and for troubleshooting.
+    By moving the redirection to the output file to test_run_(), all testing-related embellishments have been removed from the command under test itself, resulting in much cleaner test messages.
+    Additionally, also capture stderr in output. todo.sh itself currently prints everything to stdout (but the die() output probably belongs to stderr), so as of now, that has no consequences, but seems to be more consistent and future-proof.
+
+commit 189779c6de52efca7f783478fb25022bcb7be776
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Wed Jan 25 15:23:57 2012 +0100
+
+    test-lib: Separate function for exit code assertion.
+    
+    Remove the check for the todo.sh exit code (scripted via "=== N") from the command under test into a separate assertion test_expect_code_and_output. This allows for reporting of expected vs. actual exit code (also in the default non-verbose mode), and unexpected output from the same test is now reported, too.
+
+commit 516f806d58fedda6d64984dfd02c4a3eb12caef3
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Wed Jan 25 15:10:42 2012 +0100
+
+    test-lib: Always print output differences, not just in verbose mode.
+    
+    Differences in the expected and actual todo.sh output are critical to analyzing the error, so they should always be printed, not just when the -verbose argument is given.
+    
+    This refactoring moves the test_cmp call from the command under test (as seen from test-lib's perspective) into a new assertion test_expect_output, derived from test_expect_success.
+
+commit 9e38fa11eeeca8e8023e2aa1f5055896dfb2143b
+Merge: 309b0f8 f3fc18a
+Author: Gina Trapani <ginatrapani@gmail.com>
+Date:   Tue Jan 24 11:28:53 2012 -0800
+
+    Merge pull request #72 from inkarkat/list-optimization2
+    
+    Optimization: Put grep -v empty task filter inside sed.
+
+commit 309b0f81b0e57c5e33d8c1e9efdd8ed4b01bde14
+Merge: c995435 25e6d7a
+Author: Gina Trapani <ginatrapani@gmail.com>
+Date:   Tue Jan 24 11:26:43 2012 -0800
+
+    Merge pull request #71 from inkarkat/deduplicate-and-report
+    
+    Deduplicate and report
+
+commit f3fc18af6b80797e44903521a994218f98f9c022
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Mon Jan 23 11:55:15 2012 +0100
+
+    Optimization: Put grep -v empty task filter inside sed.
+    
+    No need to spawn off another process for this; we can do this inside the sed command that joins the task numbers with the task text.
+    
+    Note: The sed on OS X does not understand the \+ bound, only in the form of + when used with -E. Instead, I chose to fall back to the \{1,\} basic regexp, in the hope that it is very portable, and to avoid introducing extended regexps to the script.
+
+commit 25e6d7ae248aa66757f986cf1d44e755162673f1
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Mon Jan 23 11:05:12 2012 +0100
+
+    FIX: Adapt deduplicate sed command for OS X.
+    
+    The sed command of BSD / OS X doesn't like { command } blocks in a single expression. So move the (dynamic) deduplicate sed command(s) to the end, and use a label to access them. This also makes the entire sed script somewhat easier to understand.
+
+commit 880d829e8e4182a923712bc2e5cdcfc9f677a38a
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Sat Jan 14 21:48:48 2012 +0100
+
+    Create dedicated test file for report tests.
+
+commit 7e525ee7438d254526add0ae62d04225259b9b55
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Sat Jan 14 15:21:53 2012 +0100
+
+    ENH: Only add new data to report.
+    
+    When the last reported values are identical to the current values, do not append the same information (just with a new timestamp) to the report. Instead, just print the last report line.
+    
+    With this, the report action can be scheduled periodically (e.g. via cron) without artificially inflating the report file.
+
+commit d46adadb1d1336f50e7cac6a28c64d735fcdd2fe
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Sat Jan 14 15:10:22 2012 +0100
+
+    Align report order with other actions.
+    
+    Like "add" or "do", first the object, then (in verbose mode) the status message is printed.
+
+commit d0205b48a682a61c425293d5fa0e49510e5c4989
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Sat Jan 14 15:04:55 2012 +0100
+
+    Use ISO 8601 timestamp format.
+    
+    IMO 2012-01-14T14:49 looks better than the messy -*-*-*- of 2012-01-14-14:49, and is more aligned with standards.
+
+commit 7a4d11812d34758ac3c51132a89ffe5fc4957804
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Sat Jan 14 14:58:58 2012 +0100
+
+    Simplify writing of report line.
+
+commit ba66f66e8654f1d13c8463432560dd59ca533cdd
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Sat Jan 14 14:56:03 2012 +0100
+
+    Only print the added report line, not entire report.
+    
+    I think this makes much more sense, especially once the report gets very long. (One can always use "cat" to view the entire report.)
+
+commit 88ac3d87e67c0389e47419f56fbe3a6bfe5ae50b
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Sat Jan 14 14:41:58 2012 +0100
+
+    Remove inactive broken report header.
+    
+    This was meant to write a report header on the initial report run, but as it mistakenly used TODO_FILE instead of REPORT_FILE, it was inactive, and also missing in the tests. Let's just remove it; the format is simple, anyway.
+
+commit 1a2af45b4d320a98d195d612e300e7b6317a8a03
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Fri Jan 13 23:46:08 2012 +0100
+
+    Pull archive() in-line and delegate via recursive call, also for report.
+    
+    The report action should delegate to archive; it previously (half) did this via duplicated code (and forgot to defragment empty lines, so the tally could be off, and kept silent about the archiving).
+    
+    The do action directly invoked archive(); if the user had extended / modified the archive action via an eponymous custom action, it would not run. Therefore, always invoke archive through another call of todo.sh, so that a possible custom action is considered.
+
+commit 6424c4c1a05da8e13222bd345527feeadf1d6635
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Fri Jan 13 23:27:58 2012 +0100
+
+    Support "preserve line numbers" in deduplicate.
+
+commit fe5cdcb13ab70d76f47f9de61ef35e9f314ec22c
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Fri Jan 13 22:44:35 2012 +0100
+
+    Fix deduplicate for non-printable (and non-ASCII) characters.
+
+commit bf2ca0ed6ae68cd204cffd384709f8332c2056dc
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Fri Jan 13 22:31:08 2012 +0100
+
+    Rework fixed archive deduplication into new deduplicate action.
+    
+    As per discussion on the mailing list (http://tech.groups.yahoo.com/group/todotxt/message/3775), the automatic deduplication during archiving is unexpected and difficult to enforce in other implementations. Rather, make this a separate (optional) action.
+
+commit 62d78a003482a4c4463b0f3ebd2bf5568fe2338f
+Author: Paul Roub <paul@roub.net>
+Date:   Mon Jan 9 10:34:05 2012 -0500
+
+    explained the sed duplicate-removal pattern
+
+commit e33603939b36631e9371b32abe2708941ee6eb20
+Author: Paul Roub <paul@roub.net>
+Date:   Sun Jan 8 12:14:08 2012 -0500
+
+    Fix typo in duplicate removal on archive, per discussion at http://tech.groups.yahoo.com/group/todotxt/message/3775
+
+commit c99543506a70ab7ec819b855f323b04eca4289d7
+Author: Jean Jordaan <jean.jordaan@gmail.com>
+Date:   Sun Dec 25 14:42:40 2011 +0700
+
+    Various helptext fixes
+    * 'Quotes optional.' doesn't make sense for 'addm', because without quotes, 'addm' is 'add'.
+    * There are no projects that don't start with a +.
+    * Don't tell people to type uppercase when the software takes care of it.
+    * Mention actions, mention filtering *out* terms.
+    * Fix link to wiki in the README
+    Closes #60
+
+commit b4aaba8387086c0994244183ff108747f1af53ca
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Mon Jan 9 15:41:04 2012 +0100
+
+    Strip trailing whitespace when completing tasks.
+
+commit 493e975199f0981fdf9df891970f8496e47acbfb
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Mon Jan 9 15:23:22 2012 +0100
+
+    Remove task date(s) when completing prioritized and done tasks.
+    
+    Replace the primitive substitutions inside the completion function with a call to sed (instead of calling head), and supply more powerful substitutions there.
+
+commit fda31ea26055422f17688de0d94f64058e816cea
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Sat Jan 7 23:17:38 2012 +0100
+
+    Avoid external TR when replacing , with space.
+    
+    No need for an external tool, Bash can do a global literal substitution itself.
+
+commit 87441678274b006e1a50f3c5bab68dbac2994f57
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Sat Jan 7 23:06:54 2012 +0100
+
+    Add HIDE_CUSTOM_SUBSTITUTION for customization and add-ons.
+    
+    Add-ons or users may want to hide parts of the task text from the output.
+    Though this can already be solved through TODOTXT_FINAL_FILTER, augmenting the configured value is not trivial, and it introduces another SED command into the already long _list() pipeline. Putting an additional HIDE_CUSTOM_SUBSTITUTION into the existing pipeline has hardly any performance implications, and makes the realization of this use case trivial.
+
+commit 73e28b7225e2bc83b4147f8cc42c6e8772bf4863
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Sat Jan 7 22:53:40 2012 +0100
+
+    BUG: SED error when HIDE_..._SUBSTITUTION contains whitespace.
+    
+    This error only occurs when add-ons override either HIDE_PROJECTS_SUBSTITUTION or HIDE_CONTEXTS_SUBSTITUTION with a pattern that contains whitespace, not with the values used within todo.sh. But correcting the sloppy quoting doesn't hurt, neither.
+
+commit 43bd1b645b44ec21bae99d40b604787391f98bc2
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Sat Jan 7 22:42:56 2012 +0100
+
+    Add hint for OR'ing TERMs to help text for ls/list.
+    
+    The regexp syntax and quoting rules aren't known to many who are not well versed in the Bash shell, and difficult to get right even for people in the know. This question came up just recently on the mailing list, too.
+
+commit 4db4494f0359595658be59bc3c8e8037b218ca08
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Sat Jan 7 22:23:00 2012 +0100
+
+    Cosmetics: Correct double-spacing in help text.
+
+commit 799840b664f83c739ef1b591692141dffe5f9adf
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Sat Jan 7 22:17:50 2012 +0100
+
+    Cosmetics: Consistently use "TERM(s)" in help text.
+    
+    Two places only used "TERM" although multiple are supported. This can be misleading: do one or all have to match?
+
+commit 54f15a78549061cf593ad315b54db93c991d2ac9
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Sun Dec 25 14:49:06 2011 +0100
+
+    ENH: listall doesn't simply use concatenated task lists.
+    
+    The simplistic "listall" action implementation just uses _list() on the concatenation of active and done task lists. This has the following shortcomings:
+    
+    - Task numbers shown for archived tasks from done.txt are invalid.
+    - As the number of done tasks likely greatly outnumbers the number of active tasks, the task number padding is often larger than expected (e.g. 0005 instead of 05).
+    - Verbose output lists all tasks as originating from TODO, whereas it should differentiate between TODO: and DONE: sources.
+    
+    The main challenge is to keep processing all tasks through a single pass of _list(), so that there is a single, unified sorting applied to all tasks. A custom AWK script sets all (originally invalid) task numbers from done.txt to "0", meaning "archived task".
+    The verbose message from _list() is replaced with a custom message that shows the tasks from todo.txt, done.txt, and totals.
+    
+    Oh, and added tests for the previously untested "listall" action.
+
+commit 17658c852d4b6bf2b6dcaae5e8688fa48f72de9b
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Fri Dec 23 22:46:10 2011 +0100
+
+    Reformatting: Lay out _list() file numbering in multi-line.
+    
+    ...like the following complex formatting and filtering steps.
+
+commit f8a6e5f8d6e860a9c12533212aecd3abd7bb9b84
+Merge: c0847b0 388ae74
+Author: Gina Trapani <ginatrapani@gmail.com>
+Date:   Sun Dec 18 21:50:18 2011 -0800
+
+    Merge pull request #59 from inkarkat/bug-pri-no-existence-check
+    
+    BUG: pri doesn't issue an error when the task does not exist.
+
+commit 388ae745afa875feb8a22a44a9b0b2de53802d7b
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Sun Dec 18 21:44:47 2011 +0100
+
+    Refactoring: Extract getPrefix() for more consistent move error.
+    
+    I think that the error on the "move dest src" action should be given like "SRC: No task 42" instead of "TODO: No task 42 in /path/to/src.txt", to be consistent with the addto and listfile actions. Extracted and exposed getPrefix(), again to remove a bit of duplication, and because this can be useful in custom add-ons, too.
+
+commit cb908bd454da59e73b08ad5c16bad4a965633cd9
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Sat Dec 17 22:36:02 2011 +0100
+
+    Refactoring: Extract getTodo() and getNewtodo() functions.
+    
+    The retrieval of a task text for $item and associated error handling so far was scattered around the individual actions. This is now consolidated in two new utility functions, which directly set $todo or $newtodo, respectively. (Inconsistent variable names like $NEWTODO have been adapted.) This ensures that all actions perform the same error checking, reduces a bit of duplication, and allows custom add-ons to benefit from these exported functions. Ah, and the error messages for the "move" action is now more in line with the other errors; unfortunately, this isn't yet covered by a test.
+    
+    Note that the check whether $item is numeric must not use the +([0-9]) extglob any more, as such functions cannot be exported; a new Bash doesn't have the "shopt -s extglob" and complains with a syntax error. Fortunately, it is possible to perform the same check via standard Bash mechanisms.
+
+commit 55679d136f03aaf7aa872d98aaa9d9ce2100173b
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Sat Dec 17 21:29:18 2011 +0100
+
+    BUG: pri doesn't issue error when task does not exist.
+
+commit c0847b0b2510c7eb93363b19c8d2d43e11be9d30
+Merge: 76fb1cb ea0e7c7
+Author: Gina Trapani <ginatrapani@gmail.com>
+Date:   Wed Dec 7 09:31:28 2011 -0800
+
+    Merge pull request #58 from inkarkat/bug-quoting-negative-term
+    
+    FIX: Correct quoting for negative -TERM filtering.
+
+commit 76fb1cb3ee7ab48249b61b555d5c11d87e6fa83c
+Merge: ac090fa cd7d2f2
+Author: Gina Trapani <ginatrapani@gmail.com>
+Date:   Wed Dec 7 09:21:17 2011 -0800
+
+    Merge pull request #57 from inkarkat/filename-completion
+    
+    Add file completion for addto, listfile, and move.
+
+commit ac090fa30b3029e18b89799c5985ebec5c449511
+Merge: 417e86a d2e0f6e
+Author: Gina Trapani <ginatrapani@gmail.com>
+Date:   Wed Dec 7 09:20:07 2011 -0800
+
+    Merge pull request #56 from inkarkat/todo_completion
+    
+    Incorporate Bash completion from the Wiki page into the distribution.
+
+commit ea0e7c7b250078ebcdcc45e68272e1e8d6600f40
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Sat Dec 3 16:55:13 2011 +0100
+
+    FIX: Correct quoting for negative -TERM filtering.
+    
+    This oversight was recently introduced with the new filtercommand() in a0f39480bfcf6f9de95583257cee958bcc7ef594.
+    I've enhanced the test to cover -TERM filtering, too.
+
+commit cd7d2f2fda96bb6733c5c43e4b69cd11c26f76c1
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Sun Nov 20 17:07:59 2011 +0100
+
+    ENH: Add file completion for move.
+
+commit 395465b5f2def592e5f763a21dee2580146a8399
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Sun Nov 20 16:30:31 2011 +0100
+
+    ENH: Add file completion for addto and listfile.
+    
+    This enhancement to todo_completion requires a small enhancement to the listfile action: When no SRC is specified, the list of text files in the todo.txt directory is printed. This is probably also useful on its own, and better than the original behavior of printing "TODO: File  does not exist."
+    
+    Note: I intentionally omitted bullet-proof error handling ($TODO_DIR non-existing or no text files contained), to avoid over-complicating this.
+
+commit d2e0f6e38d25bb0b368c20ca007cb8a4bd05ac0c
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Sun Nov 20 15:03:19 2011 +0100
+
+    FIX: Support $HOME and $TODOTXT_ACTIONS_DIR containing spaces.
+    
+    And document a minor discrepancy in action completion to todo.sh.
+
+commit b1d894f65ddff91ebef864a4a96c40e174d832c0
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Sun Nov 20 15:01:14 2011 +0100
+
+    Add recently added "shorthelp" built-in command.
+
+commit f5270be4634c5c0d55c0afd4ad8e02d217236ea2
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Sun Nov 20 14:57:36 2011 +0100
+
+    ENH: Append task text as shell comment when completing task number.
+    
+    This is useful for the paranoid before a destructive todo.txt operation. Appending the text as a shell comment doesn't affect the todo.txt command itself, but shows that the task number corresponds to the task you had in mind.
+
+commit 8cba7533b98a78cd1ed9bbdf011698a6756b9cef
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Sun Nov 20 14:36:44 2011 +0100
+
+    Avoid leaking internal variables into the shell + robustness against add-ons.
+    
+    Use "local" to avoid that the internal completion variables are accessible from the user's shell.
+    Use "todo.sh command" for the context/project lookups to avoid interference with custom add-ons of the same name, and reset TODOTXT_VERBOSE to avoid adding any message output (currently there is none).
+
+commit 285d5039f21605996c9e42b86acabdfb59a0747c
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Sun Nov 20 14:26:52 2011 +0100
+
+    Add shebang line and check for Bash.
+    
+    The shebang is ignored when sourcing the script (but still helps many text editors auto-detect the file type), and will cause an error when the script is mistakenly executed.
+    The Bash check allows to have this called from a generic place (e.g. .profile), and do no harm when under a different shell.
+
+commit 9b67a76833535d4a826e03bd6556b456dd068a8b
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Sun Nov 20 14:22:48 2011 +0100
+
+    Do not automatically complete for guessed aliases.
+    
+    Don't infringe against the principle of least astonishment (they user may have completely unrelated aliases). Rather, if the user sets up his own alias, make him apply the same to todo_completion.
+
+commit 2b0921f4ec0f42a276e1e0116df8ad6d593c57a5
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Sun Nov 20 14:20:25 2011 +0100
+
+    Add todo_completion to todo.txt distribution.
+
+commit 202f892e85972ce4eb5248825dd2e2cfe537b64b
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Sun Nov 20 14:17:22 2011 +0100
+
+    Include todo Bash completion from the todo.txt Wiki.
+    
+    This is f32aba2 of https://github.com/ginatrapani/todo.txt-cli/wiki/Tips-and-Tricks, last edited 30-Oct-2011.
+
+commit 417e86ae7ad3fb15692d200b239b05a8e0e1f126
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Thu Nov 3 17:57:01 2011 +0100
+
+    FIX: Handle special shell characters when filtering TERM.
+    
+    The double quotes used in the filter_command erroneously expand $VARIABLE, and due to missing quoting in the eval() of filter_command, multiple spaces are condensed into a single space.
+    Introduce a new function shellquote() to correctly quote each filter TERM.
+
+commit cb982391de1d79e16a2d142fe8c83355fb268393
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Thu Nov 3 16:39:47 2011 +0100
+
+    Implement listproj with factored out filtercommand() function.
+    
+    _list() is way too large and monolithic for many (re-)use cases. As a first step, factor out the building of the filter_command and reuse that for the listproj filtering.
+    Enhance the listproj test with special cases that show the problems with the previous implementation directly using _list: Option -+, custom final filters, and non-ANSI colors cause it to break.
+
+commit b8244792cc429c320e8a2abf1892342b2aefb4cc
+Author: jmoore <josh@glencoesoftware.com>
+Date:   Thu Nov 3 10:24:29 2011 +0100
+
+    Accept filters for lsprj
+
+commit a433c5828e7ef6a9b4dab01caa8f2a37727f1839
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Fri Sep 30 14:43:31 2011 +0200
+
+    shorthelp consistency
+    
+    - Restore alphabetical order for "addto".
+    - Keep "depri" shorthand after the long form as all other.
+    Closes #50
+    
+    Implement shorthelp listing add-on action one-line usage.
+    -h and an additional new "shorthelp" action list not just the usage of the built-in actions, but also from add-ons. This assumes that add-ons use the same usage indentation structure as todo.sh. (They should, anyway, for consistency of the full help message.)
+    Closes #12
+
+commit 7742d3c115b01bfcec6cc27b17f28757f56f41da
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Fri Sep 30 14:37:06 2011 +0200
+
+    Restructure help text to put built-in and add-on actions together.
+    
+    I find it annoying that the built-in actions are printed first, and the add-on actions last, although for the user, the distinction is hardly important. Therefore, moving the "options" block first (as it is short and contains the stuff most difficult to memorize), then built-in, then add-on actions.
+    As environment variables are hardly used in day-to-day operations, only once for customizing the config, they are now omitted by default and only included when -vv is given.
+
+commit 7ca2b4c6871d6c902434f3dbe85725dcda1079b6
+Merge: 239f723 65d3931
+Author: Gina Trapani <ginatrapani@gmail.com>
+Date:   Thu Nov 10 13:33:46 2011 -0800
+
+    Merge pull request #49 from inkarkat/bug-disable-filter-not-propagating
+    
+    BUG: disable filter not propagating to add-ons
+
+commit 239f7234aba3008344f857866481f61e1bf281d2
+Merge: 72fe73f e3fce6f
+Author: Gina Trapani <ginatrapani@gmail.com>
+Date:   Thu Nov 10 13:33:28 2011 -0800
+
+    Merge pull request #48 from inkarkat/bug-unrestrained-pri-matching
+    
+    BUG: unrestrained pri "(X)" matching
+
+commit e3fce6f12b324483fb2f5e3ab9bcb660897a44f3
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Thu Nov 3 18:37:36 2011 +0100
+
+    Revert to safer POSIX AWK regexp.
+    
+    AWK from Ubuntu 8.04 (mawk) doesn't support [[:space:]]; so for backwards compatibility use a plain ASCII space instead.
+
+commit 65d39319f13d36505ca22aceb47d05e157017516
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Fri Sep 30 09:15:56 2011 +0200
+
+    TODOTXT_DISABLE_FILTER missing from help text.
+    
+    Should be in there for consistency; corresponding option is -x.
+
+commit 62d3ff29775b3df1c33ff726ba4438b1b4f90364
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Fri Sep 30 09:11:54 2011 +0200
+
+    BUG: Option -x isn't propagated to custom actions.
+    
+    Somehow, no default is set for TODOTXT_DISABLE_FILTER, so that it isn't exported, and therefore does not apply to the sourced actions, so you cannot disable filtering for "myaction" via todo.sh -x myaction.
+
+commit 227b9d2c0a1fa370cf4e96dfc78876d7f2e30d98
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Fri Sep 23 16:27:30 2011 +0200
+
+    BUG: Pattern "(X) " anywhere hidden with -P.
+    
+    The regular expression HIDE_PRIORITY_SUBSTITUTION is not anchored, so strings that look like a priority but are not at the beginning are filtered, too.
+    Anchoring the regexp in the step after the highlighting has been applied is problematic due to the prepended dynamic priority highlighting string, and it also cannot be done before that because highlighting needs the information. Therefore, the filtering is moved into the AWK highlighting itself.
+
+commit 99fa15da36ed8cc37640f50bfa718da6fbcd6ac5
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Fri Sep 23 15:40:23 2011 +0200
+
+    BUG: Pattern "(X)" anywhere highlighted as prioritized.
+    
+    According to the "Todo.txt Format" specs, "Rule 1: If a priority exists, it ALWAYS appears first."
+    
+    Adapt AWK filtering to match priorities only directly after the task number added by the _list processing, and also matching the required trailing space.
+
+commit 72fe73f3d8b2ec51e04e86211f5365cb0d551d20
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Mon Jul 11 21:34:41 2011 +0200
+
+    nobacktick test: Use literal backtick
+    * Fix sed error on Mac OS, also ignore entire commented lines.
+    * With proper quoting, the non-POSIX \d96 escape isn't necessary, and the check should work also on Mac OS.
+
+commit 8f6070e702fdd45d0fa05e6c9df9664e3ca5a4ef
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Sun Jul 10 22:04:51 2011 +0200
+
+    Re-applying the listpri stuff still missing from the pull requests.
+
+commit 2891472630050403d95275a2aaaf3b4653d09e6c
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Sat Jul 9 16:46:51 2011 +0200
+
+    Add test to enforce use of $(...) code style in todo.sh.
+    
+    Pull request #26 by trajano (e24777fa2cf40d2a50b2) changed `...` to $(...), but the following commit 7900ad7e1b71bee1b828 already added another old-style one. I think the tests can also be used for some simple enforcement of coding style, so here is a first shot at it.
+    
+    Closes #46
+
+commit f3af778d3edc35b990d7f8e9b6fa458a332f6f8f
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Tue May 10 11:52:38 2011 +0200
+
+    depri: Check for unprioritized task and print message.
+    
+    The existing check didn't do much good, and one could deprioritize any normal task without notice. Instead, check that the task to be deprioritized actually has a priority and alert via "TODO: 42 is not prioritized." if that is not the case.
+
+commit c14788e7643ae7aea0fee0c570b94e09c827f315
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Tue May 10 12:07:50 2011 +0200
+
+    Cosmetics: Add TODO: prefix to todo.txt do message on already done task.
+
+commit 32c84781d29078bb0f0e25305adc7d645533c9ef
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Tue May 10 12:44:34 2011 +0200
+
+    pri: Check for existing priority and adapt message.
+    
+    The existing check (as with depri) didn't do much good. Instead, fetch the existing priority and use that information to print more specific messages:
+    - TODO: 42 re-prioritized from (C) to (A)
+    - TODO: 42 already prioritized (A)
+
+commit 6e740f748ea1eb112759067df5c4f2bcc14b08d9
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Tue May 10 13:04:53 2011 +0200
+
+    Consistency: Use /(.)/ as generic pattern for priority in replaceOrPrepend().
+    
+    Even though Gina's todo.txt syntax reference only mentions uppercase A-Z priorities, this is handled in two different ways in the code. I think the following guideline is useful: For a user-supplied priority (in the listpri and pri commands), use a strict check for A-Z. In general list and edit operations that need to be aware of the optional priority at the beginning of a task, use the general /^(.) / regexp. This allows addons to use different priority-like markers (e.g. "(-) no do"), have them ignored as priorities, but still maintained by replacements.
+
+commit 0fa5f6d1ddf76a048dfc68f524df754c2834b93c
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Tue May 10 15:20:29 2011 +0200
+
+    BUG: listpri picked up non-priority patterns.
+    
+    The regexp for the priority wasn't anchored to the beginning of the task. (As the filtering is done inside the _list pipeline, the task number has already been prepended.)
+    Also, by passing the regexp directly to _list, a case-insensitive search was performed, so despite [A-Z], lowercase characters were picked up, too. Need to make use of post_filter_command to inject a separate, case-sensitive grep into the pipeline.
+    
+    Bonus: Added test for highlighting of listpri command.
+
+commit f8b66f117a2fbbe813d2dbbcc1540e618560e8d7
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Tue May 10 15:54:50 2011 +0200
+
+    ENH: Allow listpri filtering via TERM.
+    
+    This even simplified the argument handling, since there can be no invalid priority any more; all other strings are taken as TERMs. And the check for empty ${1:-} was superfluous, anyway. Apart from these simplifications, it's basically just passing $@ to _list.
+
+commit b00ca1074abd00286d945063d2ac33ad8a056f2d
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Thu May 12 14:17:05 2011 +0200
+
+    Simplified check for done task.
+    
+    Use simple comparison with slice of string (already used e.g. in _list()) instead of grep -c pipeline.
+    
+    Closes #42
+
+commit a60dfb668d79cdb290f3976c308e5eeb9e7f7fcf
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Tue May 31 17:03:30 2011 +0200
+
+    Perform cleaninput() filtering without tr.
+    
+    Again, Bash's global pattern substitution can be used. This only depends on the "extquote" shell option, which is set by default, but we set this just to be sure.
+
+commit 899687f0efc79a6cc88a755f321ea08797cf6de5
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Tue May 31 16:41:21 2011 +0200
+
+    BUG: Multiple whitespace was condensed, CR/LF not turned to space.
+    
+    Missing quoting inside cleaninput() condensed multiple subsequent spaces into a single space, even when the user took pains to preserve whitespace by properly quoting the task in the shell.
+    The 'tr' command completely removed CR and LF characters instead of replacing them with a single space.
+    Add test cases for the whitespace handling to the add, append, prepend and replace actions.
+
+commit 301dbcf29747c95f8cabc6004cf374b0a88cacb9
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Tue May 31 15:46:14 2011 +0200
+
+    Expose cleaninput() for use in addons.
+    
+    Despite its hard-coded use of $input, this can be useful in addons, too.
+    (I, for example, use this in a "todo.sh subst" addon that delegates to the "todo.sh replace" action after performing a sed-style replacement on the passed pattern and replacement.)
+
+commit e79b1629f5aaf14de7ce5467732a446ca9c23cd6
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Tue May 31 15:28:46 2011 +0200
+
+    Perform cleaninput() escaping without sed.
+    
+    No need for invoking sed; Bash's global pattern substitution can be used.
+
+commit a4db95166d1cdb0dc30523626ca1137e26aa492c
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Tue May 31 15:10:55 2011 +0200
+
+    Escape the substitution separator in cleaninput().
+    
+    Improving on the previous fix and commit, no search for an unused substitution separator is actually needed; sed supports escaping of the substitution separator. Revert the $inputSep abstraction in favor of the former, hard-coded "|" character.
+
+commit afe6d9dfd5be549bee67347fae430dd7d9eaae7a
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Wed May 11 16:12:03 2011 +0200
+
+    FIX: cleaninput() for sed-replacement needs more escaping and unique separator.
+    
+    Commit 8e4364f5e1c559116370 removed the deletion of the "|" character from cleaninput. That was okay for the cleaninput() use in _addto(), but not in those cases that used $input for replacement via sed.
+    
+    Added corresponding tests for replace, append and prepend actions similar to what was added for the add action in the above commit.
+    
+    To really fix the problem (and not just remove all "|" characters from the text), a separator character must be found that is not part of $input, and this must be used in the sed expression. As cleaninput() already modifies the global $input variable, another $inputSep global variable is used to pass back this information.
+    
+    In addition, backslashes must be escaped in $input, or replacements like \1 wreak havoc.
+
+commit ab705cd67040835c0f89c24ec4a6739de940fdad
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Wed May 11 15:48:22 2011 +0200
+
+    Configure cleaninput() sed-escaping via argument instead of magic words.
+    
+    Encoding the actions that require the additional sed-escaping inside cleaninput() is cumbersome and error-prone. Instead, let the calling action tell cleaninput() that it wants this.
+
+commit e0ad2292a2e2d9800b9a77127f21c49e7c6390d4
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Wed May 11 15:32:31 2011 +0200
+
+    Remove no-op passing of $input to cleaninput().
+    
+    The function actually uses and modifies the global variable directly.
+
+commit c4670b6502f758a5cdb02468c398256350f92805
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Wed May 11 15:07:33 2011 +0200
+
+    Made replace test sessions independent from each other.
+    
+    When the tests depend on the todo.txt contents from the previous sessions, errors will cascade and make it more difficult to pinpoint the problem.
+
+commit 7900ad7e1b71bee1b828ecb154bbe6959294a83f
+Author: Tom Scogland <tom.scogland@gmail.com>
+Date:   Wed Mar 9 12:00:15 2011 -0500
+
+    Added sed line to allow priorities to be added on the command line with auto add date enabled.
+    Inserted test for this case in the t1010-add-date.sh test case.
+
+commit e24777fa2cf40d2a50b27478c841f1381f8f4a22
+Author: Archimedes Trajano <arch@trajano.net>
+Date:   Wed Feb 16 03:37:04 2011 -0500
+
+    Changed backquotes to use $() instead.
+    
+    $(...) has superceded the `...` notation.  This can be found by
+    searching in Google "command substitution superseded"
+    
+    Closes #28
+
+commit dae6f2bcaf9e306222c397f9b2e04de49d3eb502
+Author: Devon Jones <devon.jones@gmail.com>
+Date:   Wed Feb 9 14:55:28 2011 -0500
+
+    Environment variables override config, flags override environment variables
+    * Added more flags to give action developers more control over commands
+    that are leveraged inside their actions.
+    * Writing a better message for the help screen
+
+commit 0c5bdf3b0ab8dcc1070ca36e91545536f41f69c8
+Author: Archimedes Trajano <arch@trajano.net>
+Date:   Thu Feb 10 15:20:12 2011 -0500
+
+    Added quotes to dirname call.
+    
+    This allows the todo.sh to exist in a path with spaces.
+
+commit 5afd734dcbc70c9889cfc6da9c8322c34f2ddd06
+Author: Matt Henkel <mhenkel@returnpath.net>
+Date:   Tue Feb 1 11:08:29 2011 -0700
+
+    Change the default TODO_DIR so that it's the same as the todo.sh dir.
+    
+    This change makes todo.sh work out-of-the-box, and allows for excellent portable usage within Dropbox or on a flash drive.
+
+commit 990bc293baf07068afc8706676424d530dff5c3f
+Author: Matt Henkel <mhenkel@returnpath.net>
+Date:   Tue Feb 1 10:26:18 2011 -0700
+
+    Todo.sh will now check for the config in the same directory as the script--if it's not specified or found in HOME.
+    
+    This is really nice if todo.sh is kept in dropbox and accessed from multiple computers.
+
+commit 8e4364f5e1c559116370bf6a8564972da6c8ec9e
+Author: Nick Wilson <nick@njwilson.net>
+Date:   Mon Jan 31 21:07:35 2011 -0800
+
+    Fix erroneously removing pipe chars from input
+    
+    cleaninput() unintentionally deletes the '|' character from input.  This
+    commit fixes it and adds test for adding tasks with a bunch of symbols.
+
+commit f1d339a53795f8d2bcdaa213f6f490b8d48b6433
+Author: Nick Wilson <nick@njwilson.net>
+Date:   Sun Jan 23 15:40:13 2011 -0800
+
+    Fix substitution for hiding contexts/projects
+    
+    When using the -+ or -@ option to hide project or context names in list
+    output, the color reset sequence was being deleted if the project/context
+    was at the end of the line.
+    
+    For example, with the following tasks:
+    
+        (B) with priority, ending in a +project
+        task that shouldn't be highlighted
+    
+    Running 'todo.sh -+ list' would hide the "+project" from the first task,
+    but would also remove the color reset sequence ^[[0m at the end.  The
+    color from the prioritized task would continue to the next lines.
+    
+    This commit fixes the problem and adds a test to verify the fix.
+
+commit 82c834949980b8d1f043e330154b15e6f2719c02
+Merge: 07baa2c 9a5668a
+Author: Gina Trapani <ginatrapani@gmail.com>
+Date:   Thu Jan 20 10:24:20 2011 -0800
+
+    Merge branch 'inkarkat/master'
+    
+    * inkarkat/master:
+      Cosmetics: Corrected inconsistent indentation.
+      Skipping 'nonexecutable action' test on Cygwin.
+      Factored out generation of custom action scripts.
+      Fixed test environment for escaped test output.
+      MINOR: Removed unnecessary empty & reference in sed substitution.
+      Avoiding todo.sh help error when .todo.actions.d contains subdirs.
+      BUG: interpretation of \033 escape sequences in task
+      BUG: task listing aborted on embedded \c escape sequence
+      BUG: tr: extra operand `d' error caused by missing quoting
+
+commit 9a5668a51ce2e7f4a06fd1134267527322668443
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Thu Jan 20 16:08:20 2011 +0100
+
+    Cosmetics: Corrected inconsistent indentation.
+
+commit a82fd583630fd578e8ba2e19b98a789553b3855c
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Thu Jan 20 15:34:46 2011 +0100
+
+    Skipping 'nonexecutable action' test on Cygwin.
+    
+    On Cygwin, clearing the executable flag may have no effect, as the Windows ACL may still grant execution rights. In this case, we skip the test instead of failing.
+
+commit 819a8285cc95dc4972a6e6b3c8c98a3a59f30a6b
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Thu Jan 20 15:07:47 2011 +0100
+
+    Factored out generation of custom action scripts.
+    
+    - Reduced duplication via common make_action() function.
+    - ENH: Adding proper shebang line to the custom action scripts.
+    - Changed output of custom action to better differentiate from todo.sh output.
+
+commit 2df5f9fee95800686223ee9f5078c132947637d2
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Thu Jan 20 13:23:06 2011 +0100
+
+    Fixed test environment for escaped test output.
+    
+    - test-lib uses 'read -r' to parse the test session input literally, without interpretation of backslashes.
+    - FIX: Use quoting to maintain original whitespace (tabs and multiple spaces) from the test session input (instead of condensing into a single space).
+    - Using Bash instead of POSIX shell for t1340-listescapes.sh, so that the interpretation of escape sequences is not dependent on the POSIX shell being used.
+    - Changed Makefile so that the shell selected by the shebang line is actually used when invoking tests, not the POSIX shell.
+    - Above changes obsolete the multiple escaping of the test session data; now, the test session can actually be pasted as-is into a test script, even when it contains backslashes. (I.e. works as expected now.)
+
+commit 07baa2c1bd2c1f607f48b2153da5bdb8f76f7a84
+Author: Gina Trapani <ginatrapani@gmail.com>
+Date:   Tue Jan 18 20:32:23 2011 -0800
+
+    Added GPL license
+
+commit a117b7cb3cc34792e4561273ee307a70bca506cf
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Thu Dec 30 23:19:57 2010 +0100
+
+    MINOR: Removed unnecessary empty & reference in sed substitution.
+
+commit 9760ee23c79818e7d94c11b895e9f923335cc58f
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Thu Oct 21 12:27:30 2010 +0200
+
+    Avoiding todo.sh help error when .todo.actions.d contains subdirs.
+    
+    I have placed tests for my custom todo actions in ~/.todo.actions.d/tests/; this causes a ".../.todo.actions.d/tests: is a directory" error on todo.sh help.
+    Added condition for regular files to the executable check in order to exclude subdirectories.
+
+commit ce501c5362963a98a8d26fa0d4309e9c166a2958
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Thu Oct 21 11:30:31 2010 +0200
+
+    BUG: interpretation of \033 escape sequences in task
+    
+    The global substitution in the AWK highlighting of prioritized and done tasks also affected the task text itself, not just the inserted color definitions.
+    Factored out the evaluation of the color variables and interpretation of \033 into a highlight() AWK function.
+    Added test cases which check that \a, \t, \n, \x.. and \0.. escape characters in the task text are listed as-is, without interpretation.
+
+commit 824101defdf5b4104e789aa17456badde35f1a0d
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Thu Oct 21 10:11:40 2010 +0200
+
+    BUG: task listing aborted on embedded \c escape sequence
+    
+    Fixed by removing the -e option that causes the echo command to interpret escape characters. Coloring of done tasks (the only step in the _list pipeline that required this interpretation) has been moved into the AWK pipeline step which is responsible for the priority coloring, and which does the escape character interpretation internally.
+    As a nice side effect, this shortening of the _list pipeline should also speed up the listing a wee bit.
+
+commit 194a062c2d07eb43a14182d9fb2e4c20c7051f72
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Mon Aug 9 08:06:09 2010 +0200
+
+    BUG: tr: extra operand `d' error caused by missing quoting
+    
+    Reported by Bill Goffe on the todotxt mailing list.
+
+commit 94325f57cdcc3498327cce680f33eab5e2311834
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Sat Jul 17 21:29:55 2010 +0200
+
+    Improved color map instructions.
+    
+    Clarified the use of ANSI escape codes.
+    Added motivation why to change, e.g. when using Conky.
+    Added requirement to uncomment color defaults when changing the color map, based on a support request on the mailing list.
+
+commit 938bbc1ec274eb7b7bbe0261fd7867015e2b1c50
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Sat Jul 17 09:47:39 2010 +0200
+
+    Aligned PRI_X comment with updated one in config.
+    
+    As an addendum to commit 9b7f85bea18e2636730af8f1165f3321746829b7.
+
+commit 99f8911c8f8dab216bcffcecc68e575a2f774ea7
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Fri Jul 16 16:15:45 2010 +0200
+
+    Added fallback for $TODO_DIR/${FILE}.txt.
+    
+    This allows to leave off the .txt file extension in commands like "todo.sh listfile done".
+    Plus: Minor coding style alignment, replaced $1 argument with existing $FILE variable.
+
+commit f5d424907870286f51548a0a62a462627adeeee7
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Thu Jul 15 16:14:46 2010 +0200
+
+    ENH: Added highlighting of done (but not yet archived) tasks.
+    
+    This makes done tasks more stand out (like prioritized tasks) in the task list. Default highlighting is LIGHT_GREY, which seems to be modest and go well with the assumed dark terminal background.
+    Reintroduced the OSX-compatible sed filter that was introduced by commit 8b7e2e6aada05fd824cb and superseded by the PRI_X coloring generalization.
+
+commit 9b7f85bea18e2636730af8f1165f3321746829b7
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Thu Jul 15 14:04:30 2010 +0200
+
+    Config file addendum to generalization of PRI_X color support.
+    
+    Adapts the config file comments to the generalization of PRI_X color support to all priorities (commit e7b5841721e9029343d987ab8730cbf2b2e568c0).
+
+commit a7afc7917d411bef0794bcc629a5a013332e1ecf
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Thu Jul 15 13:52:09 2010 +0200
+
+    Minor: aligned capitalization in fatal error message.
+
+commit 4d29e68e899b58ea355914cc763edcf45b05ccd4
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Thu Jul 15 13:48:24 2010 +0200
+
+    Aligned "no such task" error message with verbose messages.
+    
+    The message now also starts with "TODO:", like all other messages (except for the usage messages).
+    Before: 42: No such task.
+    After:  TODO: No task 42.
+
+commit b383b1f0c57099bd69907736069afe8c7ae06c0c
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Wed Jul 14 18:01:39 2010 +0200
+
+    Aligned verbose message output of tasks with normal task output.
+    
+    I.e. removed the colon after the ITEM#. Updated tasks are now listed like the 'todo.sh ls' command does, e.g.
+        42 smell the roses
+    This is in preparation to eventually use a function factored out from _list() for the verbose task output, which would enable coloring in the verbose message and thus align the verbose message output even more with the normal task output.
+
+commit 8a95a6674976fd83f8cbf2137597778a09530ce5
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Wed Jul 14 17:31:11 2010 +0200
+
+    Using die() for some more error messages.
+
+commit 83053fd0c1ec081adc31859f5b9b4c0d13fdae9a
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Wed Jul 14 17:18:57 2010 +0200
+
+    Better verbose messages for 'replace' and 'del TERM'.
+    
+    Added "TODO:" prefix and simplified messages.
+
+commit 74fa07d26a285106a79dd66da9030d802a2185c1
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Wed Jul 14 16:47:03 2010 +0200
+
+    Aligned implementations of verbose output.
+    
+    Replaced multi-line [ ] && { ... } with if-then.
+
+commit 3e597ce20ea10e26206e3d72388a36558dd95874
+Merge: da466c9 cea6d07
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Tue Jul 13 18:15:54 2010 +0200
+
+    Merge commit 'upstream/master'
+
+commit da466c936160ebb69956e2e515230c18cba04e23
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Tue Jul 13 18:11:05 2010 +0200
+
+    Improved 'move' command.
+    
+    - Removed (accidental) printing of the task (without leading ITEM#) when checking for existence of the task; using empty check of task text as done elsewhere.
+    - Simplified error handling and using die() for proper exit code.
+    - Aligned verbose move message with the verbose output of other commands.
+
+commit 72caab8bbdb7b510e2d6ff343745bf22e3e2f86e
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Tue Jul 13 17:49:40 2010 +0200
+
+    Added test for del preserving line numbers.
+
+commit 7501b225c2ecbf05b857461a2ac359b88d82d6c0
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Tue Jul 13 17:18:31 2010 +0200
+
+    ENH: Improved 'del ITEM# TERM' command.
+    
+    - Condensing whitespace around TERM into a single space and removing leading/trailing spaces if at the beginning/end of the task.
+    - Proper error message if TERM not found.
+    - Aligned verbose removal message with the verbose output of the 'replace' command.
+    In addition, removed (accidental) printing of the task (without leading ITEM#) when checking for existence of the task; using empty check of task text as done elsewhere.
+
+commit bcbf93ebe4708e6f51ca99c5381344bc9fa187d2
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Tue Jul 13 16:18:02 2010 +0200
+
+    Fixed todo.sh del usage and exit code.
+
+commit cea6d077351aa5ed87cdbd3f2b3c76c8bca8798b
+Merge: d46a12f 2f4ba26
+Author: Gina Trapani <ginatrapani@gmail.com>
+Date:   Tue Jul 13 01:07:24 2010 -0700
+
+    Merge branch 'inkarkat/master'
+
+commit 2f4ba269947ef983bb0e9e2d7c10c8b2a008ebda
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Mon Jul 5 13:49:58 2010 +0200
+
+    ENH: Sentence delimiters for append action.
+    
+    This fixes a personal annoyance.
+    If the text to be appended to the task begins with one of the delimiter characters, no whitespace is inserted in between. This makes appending to an enumeration (todo.sh add 42 ", foo") syntactically correct.
+    The list of delimiters is configurable (for personal preferences / non-English languages) via SENTENCE_DELIMITERS in the config file.
+
+commit 5e4486826155a45b31ddfd07436310fd534036fe
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Mon Jul 5 11:24:19 2010 +0200
+
+    ENH: 'prepend' and 'replace' actions keep prepended date.
+    
+    Generalized and simplified the logic that already kept an existing priority to also keep a date added via todo.sh -t / TODOTXT_DATE_ON_ADD (unless the replaced text also starts with a date).
+
+commit 2f6d9ae329141466da39f258460816db8c2e4086
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Mon Jul 5 09:38:10 2010 +0200
+
+    Factored out 'prepend' and 'replace' actions.
+    
+    They contained much duplication, which has been consolidated into replaceOrPrepend().
+
+commit d46a12f14a39ab5b316a385f2a40062beffd7bda
+Merge: 9591976 2d0efff
+Author: Gina Trapani <ginatrapani@gmail.com>
+Date:   Tue Jun 29 10:50:58 2010 -0700
+
+    Merge branch 'inkarkat/master'
+
+commit 95919765f7982f8d565e8d64b534c58932b6a55e
+Merge: 26bee14 8b7e2e6
+Author: Gina Trapani <ginatrapani@gmail.com>
+Date:   Tue Jun 29 10:12:56 2010 -0700
+
+    Merge branch 'master' of git@github.com:ginatrapani/todo.txt-cli
+
+commit 2d0efff9a8dcccf32e4513e6d5e2f57ad4c77f38
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Tue Jun 29 12:52:56 2010 +0200
+
+    Also exporting the die() function; it's often useful in custom actions.
+
+commit c58317258e3492bb436c1c40a9d6100ab52d97f2
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Tue Jun 29 11:26:07 2010 +0200
+
+    Refactoring: Moved cleanup() calls from individual actions to end of script.
+
+commit 38e2b8847f9115638a397bf039b41c212f5e44f9
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Tue Jun 29 11:07:40 2010 +0200
+
+    BUG: Failure of custom actions is not reflected in todo.sh exit status.
+    
+    No further actions are done after cleanup() calls, so the change from "exit" to "return" is safe. Further refactoring of the cleanup() calls is pending.
+
+commit f72c1034ee9c57523620e344dc68b16cba66ac9d
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Tue Jun 29 10:43:53 2010 +0200
+
+    Added tests for custom actions (TODO_ACTIONS_DIR).
+    
+    t0002-actions.sh for locating the .todo.actions.d directory.
+    t8000-actions.sh for the contract between todo.sh and custom actions.
+
+commit 37fcc53b26f0e619df4de7a2249c1ba60e109694
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Tue Jun 29 08:00:24 2010 +0200
+
+    BUG: test_todo_session with error exit doesn't work
+    
+    BUG 1: didn't report non-error exit
+    A test that enforces a non-zero exit code via "=== N" would succeed when the command under test returned with success (0); only differing exit codes would be correctly reported.
+    Corrected logic so that the check for the exit code would always run, not just when the command under test failed.
+    
+    BUG 2: too early evaluation of $?
+    In the test expression, the evaluation of $? must be deferred until the test expression itself is evaluated.
+    Escaping $? to prevent premature evaluation in the context of the expression definition.
+
+commit e7b5841721e9029343d987ab8730cbf2b2e568c0
+Author: Glyn Faulkner <gf515@york.ac.uk>
+Date:   Mon Jun 21 15:25:42 2010 +0200
+
+    Generalizes the PRI_X color support to all priorities.
+    
+    It allows you to assign a distinct color to any priority, not just A, B and C. Submitted to the todo.txt mailing list on 3-Jun-2010; committed on behalf of the author because there was no follow-up; cp. http://tech.groups.yahoo.com/group/todotxt/message/2619
+    Also committed this because it fixes a sed expression error when there are spaces in a $PRI_... variable, which occurred in my integration with Conky.
+    Note: This commit obsoletes and replaces the previous fix to colorization in commit 8b7e2e6aada05fd824cb.
+    Added tests for highlighting of priorities.
+
+commit 0b16bae2e8704124c178af108e515ccc8e8adaaf
+Merge: 70b2c4c 8b7e2e6
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Mon Jun 21 12:41:24 2010 +0200
+
+    Merge commit 'upstream/master'
+
+commit 8b7e2e6aada05fd824cbb19dcf88e869d27b8282
+Author: Ed Blackman <ed@edgewood.to>
+Date:   Wed Jun 9 03:31:56 2010 +0800
+
+    Replace colorization sed scripts with ones that are more compatible with OSX
+    sed and NLS todo items.  They're also more consistent with other internal usage
+    of sed.
+
+commit 9f03cf68471b9884d1f26a2f20511f9e6c155e20
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Fri Jun 4 22:50:09 2010 +0800
+
+    Made verbose message of _addto() consistent with other task messages.
+    
+    In verbose mode, commands first print the updated task, then summarize the change in the following line.
+    The add/addm/addto commands deviated from this, using "TODO: '<task>' added on line N."
+    This change splits this into two separate lines, obsoletes the implementation jargon of "line", and makes it easier to visually parse the message.
+    This is also a preparation for a possible future use of a _list()-like function, so that the updated task is processed and highlighted like the normal task output.
+
+commit 821b9d2795a54a74fd2d09e90a10a2b25d7ab909
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Fri Jun 4 22:22:15 2010 +0800
+
+    Bugfix: _list() cannot handle filter TERM starting with space.
+    
+    Added proper quoting at check for search term starting with a dash.
+    Added tests for ls use with TERM, both with literal text and regexps. Seems that use case was missing from the tests so far.
+    Extra: Removed unnecessary "$@" argument to for() loop.
+
+commit c52d9c33af385bfea8db203d061725a4cb3f4a54
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Fri Jun 4 04:13:17 2010 +0800
+
+    Removed unnecessary echo within echo.
+
+commit 70b2c4ca40c9458671fc3c10e1d239d9967a210a
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Fri Jun 4 16:50:09 2010 +0200
+
+    Made verbose message of _addto() consistent with other task messages.
+    
+    In verbose mode, commands first print the updated task, then summarize the change in the following line.
+    The add/addm/addto commands deviated from this, using "TODO: '<task>' added on line N."
+    This change splits this into two separate lines, obsoletes the implementation jargon of "line", and makes it easier to visually parse the message.
+    This is also a preparation for a possible future use of a _list()-like function, so that the updated task is processed and highlighted like the normal task output.
+
+commit 69e756a2cde9b5eb5044fdfbda8ddceb63b2120d
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Fri Jun 4 16:22:15 2010 +0200
+
+    Bugfix: _list() cannot handle filter TERM starting with space.
+    
+    Added proper quoting at check for search term starting with a dash.
+    Added tests for ls use with TERM, both with literal text and regexps. Seems that use case was missing from the tests so far.
+    Extra: Removed unnecessary "$@" argument to for() loop.
+
+commit 52b9db310fa09a9a18c1fdf1b9be87f05b375665
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Thu Jun 3 22:13:17 2010 +0200
+
+    Removed unnecessary echo within echo.
+
+commit 26bee144bd0248a4d4be860d176f03fffdebcdca
+Merge: 948686a 8ff3a7c
+Author: Gina Trapani <ginatrapani@gmail.com>
+Date:   Sun May 30 19:09:58 2010 -0700
+
+    Merge branch 'inkarkat/master'
+
+commit 8ff3a7ce4af89df7e1abafcad59e1d7d10ef6577
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Thu May 27 15:48:37 2010 +0200
+
+    Cleaned up terms in command error messages.
+    
+    The messages now consistently use "task"; the use of "todo" is deprecated.
+
+commit 8bddb081961bb0d5c953a318067ae6bd4bdc3db3
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Thu May 27 15:11:33 2010 +0200
+
+    Cleaned up terms in help.
+    
+    The help and messages now consistently use "task"; the use of "todo" is deprecated.
+    "ITEM#" is used to refer to the number of the task. This may be more consistently expressed as "TASK#". On the other hand, that could lead to more confusion between TASK (the text) and TASK# (the number).
+    The implementation still leaks through in the phrase "on line ITEM#"; ideally, todo.txt would abstract over the line-based textual representation.
+
+commit 391064e4f0235476084c6b63c5a01b7cef9fa9eb
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Thu May 27 14:49:07 2010 +0200
+
+    Replaced "NUMBER" with "ITEM#" in help and shorthelp.
+    
+    This makes the help output consistent with the syntax error messages of individual commands.
+
+commit d52a1a7bd22b5e3ccfb309919e98f379a99ec0cf
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Tue May 25 13:42:04 2010 +0200
+
+    Bugfix: Doubled help output on TTY with PAGER.
+    
+    On "todo.sh help", first the long help output is printed through the pager, and
+    after quitting the pager the output is printed once more in full.
+    Didn't write a test for this, as this requires a connected terminal and cannot
+    be observed in the test harness.
+    
+    Fix: The "exec" command has no effect inside a pipe; added an explicit "exit 0".
+    
+    Also simplified check for PAGER: No "exec" necessary, combining stderr and
+    stdout.
+    Also added quoting for PAGER so that it can contain spaces.
+
+commit 15084aa4d770cc3d17b1b03dec5aca272aa2e203
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Tue May 25 13:27:28 2010 +0200
+
+    Allow passing multiple items to depri, like for the do command.
+
+commit 5876cc04373dfeb4e9d8a9bf83123764238dfe14
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Tue May 25 13:08:27 2010 +0200
+
+    Bugfix: depri first checks validity of item argument syntax before searching for todo.
+    
+    Added testcase for the basic depriority command.
+
+commit 370abbbf36733c43900d390281b8a61c6927faef
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Tue May 25 10:23:07 2010 +0200
+
+    Aligned short help for "do" with correct long help text.
+
+commit 97eaa24b06274d048612228298d3147d480ce98d
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Tue May 25 10:15:53 2010 +0200
+
+    Corrected typo in comment.
+
+commit 9e5e6aef39bfe3da929aadd4f2131dad04c22a0b
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Tue May 25 10:10:09 2010 +0200
+
+    Printing usage message if no ITEM# given to "todo.sh do".
+
+commit edac86a94df0530a49334c948104b3532f391542
+Author: Ingo Karkat <swdev@ingo-karkat.de>
+Date:   Tue May 25 09:37:18 2010 +0200
+
+    Aligned "todo.sh do" usage message with existing support of passing multiple numbers.
+
+commit 948686a50176cb56fd1a2901a0bcceac07aacef2
+Merge: fd10678 2a65615
+Author: Gina Trapani <ginatrapani@gmail.com>
+Date:   Fri May 14 18:37:43 2010 -0700
+
+    Merge branch 'master' of git@github.com:ginatrapani/todo.txt-cli
+
+commit 2a65615c7a3f1a40a1f75f406870d84c50f2571a
+Author: Yujie Wu <wu@wu-laptop.(none)>
+Date:   Sat May 1 00:50:40 2010 +0800
+
+    Added a case for the fixed replace command.
+
+commit d7e194b09d40dd5a29668ae61b826ad31c9d4c0f
+Author: Yujie Wu <wu@wu-laptop.(none)>
+Date:   Sat May 1 00:49:47 2010 +0800
+
+    Fixed bug for replace command.
+
+commit fd10678257a1c8ec54cece75a10368823613f70a
+Author: Yujie Wu <wu@wu-laptop.(none)>
+Date:   Fri Apr 30 12:50:40 2010 -0400
+
+    Added a case for the fixed replace command.
+
+commit a4ab8a808afe7a5b7f6a2eafe471576378a0731a
+Author: Jared Cordasco <jcordasc@coglib.com>
+Date:   Tue Apr 13 23:36:31 2010 +0800
+
+    Tab fixes.
+
+commit e395ac78d8ab55f9bb7e6b6229be8e639096300d
+Author: Gina Trapani <ginatrapani@gmail.com>
+Date:   Fri Mar 26 12:55:55 2010 -0700
+
+    Fix line endings
+
+commit 6fc2d8191905d66c7307a55771f1c1aab813ec1e
+Author: Paul Mansfield <paul.mansfield@mansteck.co.uk>
+Date:   Tue Feb 23 23:05:03 2010 +0000
+
+    Bugfix: Old versions of bash do not have =~
+    
+    Versions of bash before 3.0 do not have =~ syntax to match on a regex.
+    Changed to using a simple grep -c test instead.
+    Fixes issues with osx and Solaris 9 and before.
+
+commit b6467eaa643c61b4424960c54287d31d3a4f0427
+Author: Jared Cordasco <jcordasc@coglib.com>
+Date:   Tue Jan 12 14:42:02 2010 -0500
+
+    Updated _list() output to match updated addto. Adjusted tests to match.
+    
+    - _list() now shows the capitalized filename in place of 'TODO:'.
+      For example, listing garden.txt produces a output prefixed by 'GARDEN:'
+      This eliminates the ' from $FILE' part of the _list() output. All tests
+      were adjusted to match this new output.
+
+commit 2d3820394a477c70fca129f6f6ad1f48c8f4aeb0
+Author: Jared Cordasco <jcordasc@coglib.com>
+Date:   Sun Jan 10 01:16:11 2010 -0500
+
+    Refactored various add functionality to one function. Added tests.
+    
+    - 'add' and 'addm' now 'addto' with $TODO_FILE instead of user supplied file
+    
+    - 'addto' now shows the capitalized filename in place of 'TODO:'.
+      For example, adding to garden.txt produces a output prefixed by 'GARDEN:'
+      (Probably the most controversial part of this commit and up for
+      discussion. If kept, the 'listfile' output should be made to match.
+      Note that this convention would then minimize standard output by
+      dropping the file name.)
+    
+    - All existing add/addm/add-date tests pass. Two new test sequences were
+      added to test 'addto' and 'listfile' functionality.
+    
+    - A space/tab nuissance was cleared up in the tests/README file.
+
+commit 394c4c748ac7fe9c4840536eb1ac28aa9a03853f
+Author: Jared Cordasco <jcordasc@coglib.com>
+Date:   Wed Jan 6 21:05:22 2010 -0500
+
+    Correctly fixed regexp quoting issue for bash v3.1.x and v3.2.x.
+    
+    See: http://stackoverflow.com/questions/218156/bash-regex-with-quotes
+
+commit 4c76f04a8256bcf18f0486c71bc5a10440f503e3
+Merge: 2bb14eb bf53793
+Author: Jared Cordasco <jcordasc@coglib.com>
+Date:   Tue Jan 5 23:26:08 2010 -0600
+
+    Merge branch 'master' into personal_opts (w/ spacing corrections)
+
+commit bf537934d7b2db5f9fe38a082932e19c51e7b28b
+Author: Gina Trapani <ginatrapani@gmail.com>
+Date:   Tue Jan 5 20:54:14 2010 -0800
+
+    Removed vim plugin; should be in separate repo for addons
+
+commit 2bb14eb9bcbb5a99bf75e41ab950db6c2c0f55da
+Author: Jared Cordasco <jcordasc@coglib.com>
+Date:   Tue Jan 5 15:45:36 2010 -0500
+
+    Consolidated TODOTXT_VERBOSE tests.
+
+commit 99511169c38c5ff1f7bdb03421e8b58d8057a983
+Author: Jared Cordasco <jcordasc@coglib.com>
+Date:   Tue Jan 5 15:38:24 2010 -0500
+
+    Fixed erroneous hide/show comments.
+
+commit acc881f0dd2b96d63b5007e5af4775f78803cf9b
+Author: Jared Cordasco <jcordasc@coglib.com>
+Date:   Tue Jan 5 15:22:13 2010 -0500
+
+    Faster here document outputs. (Help/Usage messages)
+
+commit d337933fd93f8f3111e1d6b36a02031cfb2df3d9
+Author: Jared Cordasco <jcordasc@coglib.com>
+Date:   Tue Jan 5 15:25:31 2010 -0500
+
+    Changed odd tabs to spaces.
+
+commit 0a7e6337b204b0245b24486646b184d82c12a222
+Author: Jared Cordasco <jcordasc@coglib.com>
+Date:   Mon Jan 4 17:01:29 2010 -0500
+
+    Quoting regexp to parse properly.
+
+commit 0e326067e3865a1a3fc9676c82cf55b85bf672c0
+Author: Brian Phillips <bphillips@digitalriver.com>
+Date:   Thu Dec 3 13:14:13 2009 -0600
+
+    fixed tabs/spaces, also set height on new window
+
+commit f6cf3fe76fcf3a535591dc006c6c69c625ef6361
+Author: Brian Phillips <bphillips@digitalriver.com>
+Date:   Wed Dec 2 15:55:59 2009 -0600
+
+    fixed auto-complete function name for contexts
+
+commit 20e04d5a4de9308b2335009995bd8ee1578e5167
+Author: Brian Phillips <bphillips@digitalriver.com>
+Date:   Wed Dec 2 15:38:46 2009 -0600
+
+    more 'silent' additions
+
+commit 9c56d2137a1cc59d035f2ec8edb9a2c99ce48bbb
+Author: Brian Phillips <bphillips@digitalriver.com>
+Date:   Wed Dec 2 15:26:32 2009 -0600
+
+    added 'silent' to a bunch of calls
+
+commit ceed8bf8418ce4825424b38b7f8ded62500c2c52
+Author: Brian Phillips <bphillips@digitalriver.com>
+Date:   Wed Dec 2 15:17:12 2009 -0600
+
+    more tweaks
+
+commit b8ced51a22a5eb0e3a00eabb1bc7d9edcacb9782
+Author: Brian Phillips <bphillips@digitalriver.com>
+Date:   Wed Dec 2 14:37:36 2009 -0600
+
+    added some additional mappings, plus a project context
+
+commit 9a56bdd4ede0cc1ea9aad31f2a369ff48bb7da1d
+Author: Brian Phillips <bphillips@digitalriver.com>
+Date:   Wed Dec 2 12:09:51 2009 -0600
+
+    vim support! (first cut, anyway)
+
+commit 9b580acf14d5f3cdcaac94b3bb0ef656f694b7dc
+Author: Brian Phillips <bphillips@digitalriver.com>
+Date:   Wed Dec 2 08:55:46 2009 -0600
+
+    support PAGER pipe for help output
+
+commit 0d5904658e7e5a0b4b03b1da291c7568727f9261
+Author: Paul Mansfield <paulbm@dellboy.mansfield.net>
+Date:   Mon Sep 21 03:17:10 2009 +0100
+
+    Portability fixes
+    
+    * Removed last echo -e instances, no support in OSX
+
+commit 97866082e676380e1666f51dcf751f5dfb52e0c5
+Author: Paul Mansfield <paulbm@dellboy.mansfield.net>
+Date:   Thu Sep 17 23:52:43 2009 +0100
+
+    Small change for addm test case.
+    
+    * Seems echo -e isn't multiplatform compatible. Using >> for append
+      instead.
+
+commit 5f9fd4c7591bc29b18a1bf68f415350ccb269400
+Author: Mike West <mike@mikewest.org>
+Date:   Mon Sep 14 21:21:25 2009 +0200
+
+    Bug Fix: tasks whose ID begins with '0' ought to be ignored.
+    
+    *   Fixed regex in `_list` to exclude lines that begin with whitespace,
+        as the ' ' => '0' replacement hadn't yet been performed.
+    
+    *   Added test cases to `t1300-ls.sh` to check for this condition.
+
+commit 5a49f4b5d504f8ae4638e48cec2192e1a849f8c5
+Merge: f8e6a8d 2983917
+Author: Gina Trapani <ginatrapani@gmail.com>
+Date:   Tue Sep 8 11:58:04 2009 -0700
+
+    Merge branch 'the1ts/addm'
+
+commit f8e6a8d69d20ba65ad4c1471ca22010eb986bdca
+Merge: ce8a0a7 51dd50b
+Author: Gina Trapani <ginatrapani@gmail.com>
+Date:   Tue Sep 8 11:57:20 2009 -0700
+
+    Merge branch 'the1ts/master'
+
+commit 2983917f25842398319cd98825b476e32ad015f3
+Author: Paul Mansfield <paulbm@dellboy.mansfield.net>
+Date:   Sun Sep 6 19:05:46 2009 +0100
+
+    whitespace fix
+
+commit 7a87077dfcdda4eba02c7a6da3c97c31caf1be2b
+Author: Paul Mansfield <paulbm@dellboy.mansfield.net>
+Date:   Sun Sep 6 18:53:31 2009 +0100
+
+    Added new action addm
+    
+    This allows addition of multiple todo items by sending multiple lines.
+
+commit 51dd50b41d362a240d70db9f1d91428ccb5cce9c
+Author: Paul Mansfield <paulbm@dellboy.mansfield.net>
+Date:   Sat Sep 5 23:55:22 2009 +0100
+
+    Tighten the regex in Issue 6 bugfix.
+    
+    Checks for complete action names before escaping &'s
+
+commit ddaf9ade22769b22e5e11788aff3dea311d6a78b
+Author: Paul Mansfield <paulbm@dellboy.mansfield.net>
+Date:   Sat Sep 5 20:36:38 2009 +0100
+
+    Bug Fix: Issue 6 append and replace unexpected behavior if there's an & in task (even in quotes)
+    
+    Using the cleaninput function, to escape &'s on certain actions.
+    Currently the actions needing escaped &'s are append, prepend and replace.
+    Other actions including add need unescaped &'s.
+
+commit ce8a0a78759a3bfdbbbabc9fcca09273e955865c
+Merge: a19a361 5e71728
+Author: Gina Trapani <ginatrapani@gmail.com>
+Date:   Fri Sep 4 16:11:50 2009 -0700
+
+    Merge branch 'the1ts/master'
+
+commit 5e71728cda6fdfe07aa19769ccedac497e34871c
+Author: Paul Mansfield <paulbm@dellboy.mansfield.net>
+Date:   Fri Sep 4 13:37:07 2009 +0100
+
+    Added a new variable $TODO_FULL_SH
+    
+    This gives access to the full path of the script. It may prove useful
+    for addon developers to rerun todo.sh from within their addons, in order
+    to populate variables for context, projects etc. As we have the config
+    and actions directory available via variables, this is a missing piece.
+
+commit f44bcfb06788b72b9c32561b446762b03579f462
+Author: Paul Mansfield <paulbm@dellboy.mansfield.net>
+Date:   Fri Sep 4 12:23:48 2009 +0100
+
+    Bug Fix, better fix for "add does not escape line breaks"
+    
+    Now removes windows and unix style line breaks. Each test has a windows
+    and a unix style line break.
+
+commit a19a3616c4dae3d06803f5b264d33d7919539789
+Merge: 8571210 229737b
+Author: Gina Trapani <ginatrapani@gmail.com>
+Date:   Thu Sep 3 10:45:03 2009 -0700
+
+    Merge branch 'the1ts/master'
+
+commit 229737bd2fa0d8c6d0d502b77a46e954f066f507
+Author: Paul Mansfield <paulbm@dellboy.mansfield.net>
+Date:   Wed Sep 2 23:30:14 2009 +0100
+
+    Bug Fix: Issue 1
+    
+    Added a cleanitem function, this replaces newlines with a space.
+    Currently this is used in the add, append, prepend and replace actions.
+
+commit 857121090abd249306771e5977d0c936ad51d4fe
+Merge: 7baf051 490f5d3
+Author: Gina Trapani <ginatrapani@gmail.com>
+Date:   Tue Sep 1 09:53:37 2009 -0700
+
+    Merge branch 'FND/disable_final_filter'
+
+commit 490f5d34e81ae228afe84f7afa1702983d9f593a
+Author: FND <fnd@oda.(none)>
+Date:   Sun Aug 30 09:48:44 2009 +0100
+
+    added option to disable final filter
+    
+    The option marker was chosen as "-x" here.
+    Alternatives might be "-X" or "-*".
+
+commit 7baf05194211f5a67a8b9aff94955c2e096f38b7
+Author: Paul Mansfield <paulbm@dellboy.mansfield.net>
+Date:   Sat Aug 29 21:13:38 2009 +0100
+
+    Bug Fix: do: no safeguard to do twice
+    Tests item is not marked done before attempting to mark item as "done".
+
+commit 266d9e1258a612542b211cfccc2b79168fa5de1d
+Merge: e0b3ea1 98569d5
+Author: Gina Trapani <ginatrapani@gmail.com>
+Date:   Wed Aug 26 16:21:14 2009 -0700
+
+    Merge branch 'mivok/master'
+
+commit e0b3ea1da9a10f563110fa85c198923f3d7a52b7
+Author: Gina Trapani <gina@ginatrapani.org>
+Date:   Wed Aug 26 15:51:27 2009 -0700
+
+    Added new multiple do capability to help message
+
+commit 35e80b3f337006215c8801645ab1c136780d973e
+Merge: 294e2ac 8d78cc6
+Author: Gina Trapani <gina@ginatrapani.org>
+Date:   Wed Aug 26 15:34:39 2009 -0700
+
+    Merge branch 'the1ts/master'
+
+commit 294e2ac9a49ed492d740445847188d77cd8f3c74
+Author: David A. Harding <harding@mail.dtrt.org>
+Date:   Sat Aug 22 16:01:20 2009 -0400
+
+    Fixed issue #14: invalid date range.  Changed regex [ -~] to [ ~-].
+
+commit 8d78cc6053bf94c3dc5acfd80d60fa08ba700d94
+Merge: 91126e3 092e834
+Author: Paul Mansfield <paulbm@dellboy.mansfield.net>
+Date:   Sat Jul 4 11:07:41 2009 +0100
+
+    Merge branch 'issues11' of git@github.com:the1ts/todo.txt-cli
+
+commit 092e83404f06b7ccd41c870655b599733ff3e770
+Author: Paul Mansfield <paulbm@dellboy.mansfield.net>
+Date:   Sat Jun 27 12:51:48 2009 +0100
+
+    Bug Fix: prepend not correct on prioritized tasks
+    
+    Check for priority, if one exists, remove, prepend and add back.
+    If priority doesn't exist just runs the normal prepend functionality.
+
+commit 91126e38aadf3d21440788d61e12034c5423e494
+Author: Paul Mansfield <paulbm@dellboy.mansfield.net>
+Date:   Thu Jun 25 00:14:00 2009 +0100
+
+    Issue fix: Multiple do items
+    
+    Can now do multiple items in one go.
+    Either comma seperated list or a whitespace seperated list
+
+commit 5df58793a013ad9aeceb757e25410807fa8d0965
+Author: Paul Mansfield <paulbm@dellboy.mansfield.net>
+Date:   Wed Jun 24 23:25:33 2009 +0100
+
+    Bug fix: for replace with priority
+    
+    Checks for priority, removes, does replace then reinserts priority
+
+commit d2e892049d85ee94bdfd157d79dcb3ddbd3d2c52
+Author: Paul Mansfield <paulbm@dellboy.mansfield.net>
+Date:   Wed Jun 24 19:24:53 2009 +0100
+
+    Bugfix: Replace with priority set
+    
+    Checks for a priority, if found removes priority does the replace
+    then adds back the priority.
+    
+    Added a test for replace with priority set.
+
+commit 0e2798accef06b6c796c7536fc5610cbf1aef5f9
+Author: Paul Mansfield <paulbm@dellboy.mansfield.net>
+Date:   Wed Jun 24 14:06:25 2009 +0100
+
+    Added test for prepend and priority fix
+
+commit 98569d5f8c328ccc8c6c1f45e0531b94c910e522
+Author: Mark Harrison <mark@mivok.net>
+Date:   Mon Jun 22 22:34:45 2009 -0400
+
+    Tests for additional default config file location
+
+commit 75622c4a72477c170a5ecc094136f5c6dc0093b7
+Author: Mark Harrison <mark@mivok.net>
+Date:   Mon Jun 22 22:26:16 2009 -0400
+
+    Support use of $HOME/.todo/ for all todo.sh configuration
+
+commit f9bb1350683b78f7546f97fc8189faa5a7f08c7e
+Author: Paul Mansfield <paulbm@dellboy.mansfield.net>
+Date:   Mon Jun 22 22:47:13 2009 +0100
+
+    Fixing prepend and priority issue.
+    
+    Check for priority, delete if found, prepend and add back priority.
+    Uses awk and sed, works in linux.
+
+commit a4227dfec1128be1f42f72afed5e0b41fe361ab6
+Author: Emil Sit <sit@emilsit.net>
+Date:   Sun May 10 21:50:30 2009 -0400
+
+    listcon/listproj: Work around bug in older GNU greps.
+    
+    Commit df4f9150 introduced the use of "grep -w -o".  This
+    combination was broken from the introduction of -o (in 2001) until
+    subsequent release of GNU grep 2.5.3 in 2007---see changelog for
+    2005-11-10.  In particular, OS X uses a pre-2.5.3 version
+    of GNU grep.
+    
+    Work around by replacing with two greps: one to find maximal
+    strings with @s in them (still relying on -o) and the second to
+    extract contexts.
+    
+    Reported by Jon Smajda <jon@smajda.com>; fix developed
+    in conjunction with Philippe Teuwen <phil@teuwen.org>.
+    
+    Signed-off-by: Emil Sit <sit@emilsit.net>
+
+commit 78850255e0beae544caedc508e77a561cc1f0cfc
+Author: Emil Sit <sit@emilsit.net>
+Date:   Sun May 10 21:49:37 2009 -0400
+
+    tests: Add tests to validate listcon and listproj.
+    
+    Two basic tests to ensure that listcon and listproj
+    function as expected.
+    
+    Signed-off-by: Emil Sit <sit@emilsit.net>
+
+commit 4dda7e27e4bb26e3a111e6d263a27136bfa50630
+Author: ginatrapani <ginatrapani@gmail.com>
+Date:   Sun Apr 26 10:07:43 2009 -0700
+
+    Updated Known Bugs link to GitHub's Issues Tracker
+
+commit cace5eb2d965493a6b1662464bc747054e90e665
+Author: Philippe Teuwen <phil@teuwen.org>
+Date:   Mon Apr 20 10:40:49 2009 +0200
+
+    Bugfix: TODOTXT_DEFAULT_ACTION was not exported, now exports TODOTXT_*
+    
+    Simplify the export of TODOTXT variables by having bash construct
+    the export list dynamically.
+    
+    Signed-off-by: Emil Sit <sit@emilsit.net>
+
+commit 701c30c04f2162d7c9398043cbdc3529487fd0bb
+Author: Philippe Teuwen <phil@teuwen.org>
+Date:   Mon Apr 20 10:20:40 2009 +0200
+
+    test-lib.sh: unset some more TODOTXT env vars for extra safety
+    
+    While preparing a setup where env vars overload config file,
+    I had the bad experience that my actual todo.txt was messed up
+    by the testsuite so it's safer to unset everything.
+    
+    Even so, some tests could have failed if some TODOTXT_ were set
+    in the user environment, for example:
+    export TODOTXT_PLAIN=1
+    ./t1200-pri.sh
+    
+    Since test-lib.sh does not depend on bash currently, calculate
+    the list of variables to be unset using set|sed.
+    
+    Signed-off-by: Emil Sit <sit@emilsit.net>
+
+commit 2e62536f90fd0ab36eec5b8f2bcb85c33420d2a5
+Author: Philippe Teuwen <phil@teuwen.org>
+Date:   Mon Apr 20 09:05:57 2009 +0200
+
+    Bugfix: t0000-config test config file was wrong
+    
+    $TODO_DIR were not protected therefore evaluated to null string
+    Hopefully it was used only to test for its own presence
+    but better to fix it in case someone wants to reuse that code
+    
+    Signed-off-by: Emil Sit <sit@emilsit.net>
+
+commit 678283b69ed816d3d584bdb20d73f5f613dde05d
+Author: Philippe Teuwen <phil@teuwen.org>
+Date:   Mon Apr 20 11:28:59 2009 +0200
+
+    Bugfix: typo in addto help msg skipped name of command
+    
+    Signed-off-by: Emil Sit <sit@emilsit.net>
+
+commit c490e773cfea21f23db55f30d66136547e1dd166
+Author: Philippe Teuwen <phil@teuwen.org>
+Date:   Wed Apr 15 08:38:21 2009 +0200
+
+    test-lib.sh: Fixing grep for date detection on Mac OS X, thanks Dave!
+    
+    Signed-off-by: Emil Sit <sit@emilsit.net>
+
+commit a67d0de6254bed5f066e21f1cdcef5bbd8c34ec4
+Author: Dave Hein <thinkcriticallyandbefree@yahoo.com>
+Date:   Sun Apr 19 16:00:56 2009 -0500
+
+    Add TODOTXT_FINAL_FILTER to provide a final custom list filter.
+    
+    The idea behind this is to allow a config file or addon to inject
+    a list output filter after all the other filtering has been
+    performed. The existing TODOTXT_SORT_COMMAND provides a hook
+    for a custom filter prior to colorization and priority/context/proj
+    hiding; this new TODOTXT_FINAL_FILTER provides a hook for custom
+    filtering after the colorization and pri/con/proj hiding.
+    
+    (I found this hook was needed when I wanted to trim the output to a
+    maximum line length.)
+    
+    Note: I've added a number of tests of the list command, including
+    one for this new variable, as part of this change.
+    
+    Signed-off-by: Emil Sit <sit@emilsit.net>
+
+commit 55015f507113609501e58c545ac73122ea95060e
+Author: Philippe Teuwen <phil@teuwen.org>
+Date:   Sun Apr 12 00:56:58 2009 +0200
+
+    Bugfix: support commands combination for TODOTXT_SORT_COMMAND
+    
+    So now e.g. piped commands can be used:
+    export TODOTXT_SORT_COMMAND=" env LC_COLLATE=C sort -f -k2 - | grep -m 10 ."
+
+commit c8fc6612567b742c1645e04d23ebfb0db07b9a5c
+Author: Philippe Teuwen <phil@teuwen.org>
+Date:   Sat Apr 18 21:31:38 2009 +0200
+
+    Bugfix: test-lib.sh TEST_DIRECTORY could still contain symlink
+
+commit fee3133547e41161a77987f3d0513828e5a81855
+Author: Emil Sit <sit@emilsit.net>
+Date:   Sat Apr 18 21:11:27 2009 -0400
+
+    Uniformly use $TODO_SH to refer to script.
+    
+    Set $TODO_SH to just be $(basename "$0") at the beginning
+    of the script and use it in all usage messages.
+    
+    This happens to simplify testing because it allows us to refer to
+    the script as "todo.sh" in all output.  For general use, if the
+    user has aliased to file to something else, the usage messages will
+    still reflect that alias.
+    
+    Signed-off-by: Emil Sit <sit@emilsit.net>
+
+commit 825c60514f551dc6a2970ec01b873dd7e0cf234e
+Author: Emil Sit <sit@emilsit.net>
+Date:   Mon Apr 13 20:54:36 2009 -0400
+
+    tests: Factor basic add/list, replace, priority testing out of t9999
+    
+    add/list and replace are already covered by existing tests.
+    Add a new test, t1200-pri.sh, that handles the priority tests.
+    
+    Signed-off-by: Emil Sit <sit@emilsit.net>
+
+commit 90d113b77df2051a138ad67f9b82e854a133c3c1
+Author: ginatrapani <ginatrapani@gmail.com>
+Date:   Tue Apr 14 19:47:52 2009 -0700
+
+    Added wiki front page link
+
+commit 4caee7d9c0f16f615c3af4e0fcb2f214b67bd6c8
+Author: ginatrapani <ginatrapani@gmail.com>
+Date:   Tue Apr 14 19:46:30 2009 -0700
+
+    Consolidated docs under one header
+
+commit fe99926bb2a253f256cb0279dc475ac404f39d22
+Author: Gina Trapani <gina@ginatrapani.org>
+Date:   Tue Apr 14 22:37:58 2009 -0400
+
+    Added date detection for Macs
+
+commit fd9e2c05a7763f60f204b813e1efda8a2a2bb46f
+Merge: 25616bd 10bca65
+Author: Gina Trapani <gina@ginatrapani.org>
+Date:   Mon Apr 13 19:26:06 2009 -0400
+
+    Merge branch 'test-framework' of git://github.com/sit/todo.txt-cli into sit/test-framework
+    
+    * 'test-framework' of git://github.com/sit/todo.txt-cli:
+      tests: Update documentation to reflect recent changes.
+      tests: add testshell.sh and port old testsuite.txt
+      tests: Explicitly control the date for todo.sh.
+      tests: Make test writing simpler and add two new tests.
+
+commit 10bca653a0e4da2b8fc0d82f3011f2eb98871ada
+Author: Emil Sit <sit@emilsit.net>
+Date:   Sun Apr 12 10:14:09 2009 -0400
+
+    tests: Update documentation to reflect recent changes.
+    
+    Merge Phil's README_generate-test into the main README
+    and also update the test library documentation to reflect
+    test_todo_session and test_tick.
+    
+    Signed-off-by: Emil Sit <sit@emilsit.net>
+
+commit d6c57e42301f4c314441a274db7bb73d2a715c6a
+Author: Philippe Teuwen <phil@teuwen.org>
+Date:   Wed Apr 8 01:19:16 2009 +0200
+
+    tests: add testshell.sh and port old testsuite.txt
+    
+    Add a simple helper script testshell.sh that can be called
+    to set up an environment for generating test case transcripts
+    that can then be pasted into an actual test script.
+    
+    Port old testsuite.txt into t9999-testsuite_example.sh
+    with the aim of refactoring it later into smaller tests.
+    
+    Also, change test_todo_session to count from one instead of zero when
+    autogenerating tests.
+    
+    Signed-off-by: Emil Sit <sit@emilsit.net>
+
+commit 25616bd198edb827ed12a180ede2dedd4426f249
+Author: Gina Trapani <gina@ginatrapani.org>
+Date:   Sun Apr 12 02:45:54 2009 -0400
+
+    Ported README to Textile
+
+commit b238a29430f0cf45b3af5dfef30329b497d3a399
+Author: Emil Sit <sit@emilsit.net>
+Date:   Sat Apr 11 21:48:40 2009 -0400
+
+    tests: Explicitly control the date for todo.sh.
+    
+    Create a custom date view for todo.sh tests -- the time
+    is set in TODO_TEST_TIME as seconds since the Unix epoch
+    and a custom wrapper in the testing directory is put at the
+    front of the path to intercept todo.sh calls to date for
+    date formatting.
+    
+    This will only work as long as todo.sh calls $(date) for
+    date formatting.  It also assumes a date command that
+    supports the -d flag (such as the one in GNU coreutils.)
+    
+    Add a test for TODOTXT_DATE_ON_ADD to exercise this functionality.
+    
+    Signed-off-by: Emil Sit <sit@emilsit.net>
+
+commit 16a510366872bc960a15b84c2cb723bae639e726
+Author: Emil Sit <sit@emilsit.net>
+Date:   Sat Apr 11 09:49:11 2009 -0400
+
+    tests: Make test writing simpler and add two new tests.
+    
+    Add a test_todo_session function to test-lib.sh that enables
+    easy recording of input and output from todo.sh (including
+    annotation of exit status for testing error cases).
+    
+    Begin to port and re-factor testsuite.txt into smaller
+    test cases, starting with basic add list functionality
+    and replace functionality.
+    
+    Thanks to Philippe Teuwen <phil@teuwen.org> for feedback
+    and improvements.
+    
+    Signed-off-by: Emil Sit <sit@emilsit.net>
+
+commit 4d3b7472ff02577bec24cd07ec39e7e366896ef5
+Author: Philippe Teuwen <phil@teuwen.org>
+Date:   Thu Apr 9 04:38:48 2009 +0800
+
+    Bugfix: pri accepted priorities of more than a single letter
+    
+    e.g. todo.sh pri 1 aa
+    
+    Signed-off-by: Gina Trapani <ginatrapani@gmail.com>
+
+commit 680e93e737adbb2cdf683f2f4baa5e567f6b8cf8
+Author: Emil Sit <sit@emilsit.net>
+Date:   Sun Apr 5 22:03:00 2009 -0400
+
+    Don't set sort command in default todo.cfg.
+    
+    Instead of directly setting a value in todo.cfg, let the user
+    know what the default is and how to customize it.  This allows
+    developers the flexibility of changing the default in todo.sh
+    without having to worry about fixing people's config files.
+    
+    Signed-off-by: Emil Sit <sit@emilsit.net>
+
+commit 477738828f447455e2e876508bb370ace0182169
+Author: Emil Sit <sit@emilsit.net>
+Date:   Sun Apr 5 21:56:17 2009 -0400
+
+    Don't set colors in default todo.cfg.
+    
+    Users are probably unlikely to change the definition
+    of colors like $BLACK so just define them in todo.sh
+    and comment them out in todo.cfg.  Similarly, leave
+    default values for priority coloring available but
+    commented out.
+    
+    Signed-off-by: Emil Sit <sit@emilsit.net>
+
+commit b9f95633dc3377ff7ac0295cfe19a349025bffe1
+Author: Philippe Teuwen <phil@teuwen.org>
+Date:   Wed Apr 8 07:16:34 2009 +0800
+
+    Cleanup: removing annoying trailing space on pri tasks
+    
+    Signed-off-by: Gina Trapani <ginatrapani@gmail.com>
+
+commit df1e2eb7cf7dfc1713e0de81f240421ea7915529
+Author: Philippe Teuwen <phil@teuwen.org>
+Date:   Wed Apr 8 04:00:25 2009 +0800
+
+    Cleanup: del/depri/pri: some more $2 -> $item
+    
+    Signed-off-by: Gina Trapani <ginatrapani@gmail.com>
+
+commit a4e68f9c3fcf093eb6748d55e174e80e9824c47a
+Author: Philippe Teuwen <phil@teuwen.org>
+Date:   Wed Apr 8 03:48:35 2009 +0800
+
+    Bugfix: handling of priorities in pri/depri/do: no more globbing
+    
+    Signed-off-by: Gina Trapani <ginatrapani@gmail.com>
+
+commit 3028de42a8b3252fc7178dfdc566706ccb08eb88
+Author: Gina Trapani <gina@ginatrapani.org>
+Date:   Tue Apr 7 10:32:16 2009 -0700
+
+    Bugfix, take 2: depri no longer wipes out entire task with other parens http://tech.groups.yahoo.com/group/todotxt/message/1828
+
+commit 8fceae171df474b06c788f6a5881d91b8e2eeb5f
+Author: Gina Trapani <gina@ginatrapani.org>
+Date:   Tue Apr 7 10:24:06 2009 -0700
+
+    Bugfix: depri no longer wipes out entire task with other parens http://tech.groups.yahoo.com/group/todotxt/message/1828
+
+commit 9898e7df3f2af698c64ebf1df2d82d9a9e4fe354
+Author: Dave Hein <thinkcriticallyandbefree@yahoo.com>
+Date:   Tue Apr 7 10:04:43 2009 +0800
+
+    Fix misplaced quote that was blocking filename globbing in the action
+    'usage' logic.
+    
+    Signed-off-by: Gina Trapani <ginatrapani@gmail.com>
+
+commit 42e1a658d60c96cce790d50f639397a48cc259f2
+Author: Dave Hein <thinkcriticallyandbefree@yahoo.com>
+Date:   Tue Apr 7 09:31:06 2009 +0800
+
+    Add quotes around $action to handle cases where todo.actions.d path includes embedded spaces.
+    
+    There were a couple places where $action was used without quotes
+    that caused a problem if the .todo.actions.d had a parent directory
+    path that included spaces (e.g. /cygdrive/c/Documents\ and\ Settings/jo-user).
+    This was in the section that calls the addons with the 'usage' arg.
+    
+    Signed-off-by: Gina Trapani <ginatrapani@gmail.com>
+
+commit f1caecec4ec6e0d0549d287a304a4c2c0854eafb
+Author: Philippe Teuwen <phil@teuwen.org>
+Date:   Mon Apr 6 14:14:09 2009 +0800
+
+    TODO_ACTIONS_D is now TODO_ACTIONS_DIR
+    
+    Signed-off-by: Gina Trapani <ginatrapani@gmail.com>
+
+commit 078c69496f7defa0634ec4520d6b183b1fc5c104
+Author: Philippe Teuwen <phil@teuwen.org>
+Date:   Mon Apr 6 04:27:30 2009 +0800
+
+    Parametrize .todo.actions.d location
+    
+    Signed-off-by: Gina Trapani <ginatrapani@gmail.com>
+
+commit 8567a90e4cbc648c5314ec07feb452fcbaaab98e
+Author: Gina Trapani <gina@ginatrapani.org>
+Date:   Sun Apr 5 10:49:06 2009 -0700
+
+    Bugfix: Replace echoes old todo before new todo.
+
+commit 55f45e851531794e3116612b274f2256e9e763e8
+Author: Philippe Teuwen <phil@teuwen.org>
+Date:   Sun Apr 5 05:20:43 2009 +0800
+
+    tests: first unset TODOTXT_CFG_FILE
+    
+    Signed-off-by: Gina Trapani <ginatrapani@gmail.com>
+
+commit 03ccc7370354f423746ac6f57426b00858b8cc38
+Author: Gina <gina@ginatrapani.org>
+Date:   Sat Apr 4 14:49:30 2009 -0700
+
+    Added missing file required for tests
+
+commit a822560d44e98c3ade507daa6a936c008ec4a331
+Author: U-STARBUCK\gina <gina@starbuck.(none)>
+Date:   Sat Apr 4 12:21:53 2009 -0700
+
+    Added user-facing download link
+
+commit d860c2c36e25478b729b83f528c2fa4d29080016
+Author: U-STARBUCK\gina <gina@starbuck.(none)>
+Date:   Sat Apr 4 12:18:57 2009 -0700
+
+    Converted tab to spaces
+
+commit 7f954d73aede3fd5e1797d685317b2cce55cba53
+Merge: 8e86456 5491e45
+Author: U-STARBUCK\gina <gina@starbuck.(none)>
+Date:   Sat Apr 4 12:16:18 2009 -0700
+
+    Merged test and dist Makefile to master branch for easier dev
+
+commit 8e864568a961f71642a4f0f2164af5b584827960
+Author: U-STARBUCK\gina <gina@starbuck.(none)>
+Date:   Thu Apr 2 22:47:50 2009 -0700
+
+    Allow custom sort (tx edgewood)
+
+commit df4f9150cf9b9e49ecac12a8729a31c3a2003e32
+Author: Emil Sit <sit@emilsit.net>
+Date:   Thu Mar 26 09:56:22 2009 +0800
+
+    Remove gawk and uniq dependencies for listcon, listproj.
+    
+    Implement listcon and listproj in terms of grep -w -o, which prints
+    words that match the given regular expression, and sort -u, which
+    obviates uniq.  This probably only works with GNU grep, which seems
+    better than having to rely on gawk (which is used nowhere else).
+    
+    Signed-off-by: Emil Sit <sit@emilsit.net>
+    
+    Signed-off-by: Gina Trapani <ginatrapani@gmail.com>
+
+commit 5cc988102ddb64f64d4a70e516c92aabf251ba82
+Author: Emil Sit <sit@emilsit.net>
+Date:   Wed Mar 25 10:43:05 2009 +0800
+
+    Misc. whitespace cleanups.
+    
+    Single space after colon.
+    No end-of-line whitespace.
+    Replace tabs with whitespace.
+    
+    Signed-off-by: Emil Sit <sit@emilsit.net>
+    
+    Signed-off-by: Gina Trapani <ginatrapani@gmail.com>
+
+commit 3a0fd43270210df84f420a64059173a55e40e0b2
+Author: U-STARBUCK\gina <gina@starbuck.(none)>
+Date:   Thu Apr 2 21:49:12 2009 -0700
+
+    Moving Makefile dist infrastructure to a separate branch
+
+commit 1a6ff81e2888fca6e8bb62ab296c3c1b6b832c71
+Author: U-STARBUCK\gina <gina@starbuck.(none)>
+Date:   Thu Apr 2 21:01:44 2009 -0700
+
+    Makefile infrastructure
+
+commit 5491e458a279c8f692b54fae34b591f4040f1eb2
+Author: Emil Sit <sit@emilsit.net>
+Date:   Mon Mar 23 20:34:01 2009 -0400
+
+    tests: Simple null test of all list commands
+    
+    Signed-off-by: Emil Sit <sit@emilsit.net>
+
+commit 5789f5b4c2b15eca4072d2745d1de35bb1bff883
+Author: Emil Sit <sit@emilsit.net>
+Date:   Mon Mar 23 12:09:04 2009 -0400
+
+    Convenience Makefile for running tests inside tests dir.
+    
+    Simply call up to parent directory where all the real rules
+    are specified.
+    
+    Signed-off-by: Emil Sit <sit@emilsit.net>
+
+commit b17cb11ec6d285b010c720412cdccbceddd2357d
+Author: Emil Sit <sit@emilsit.net>
+Date:   Mon Mar 23 12:03:34 2009 -0400
+
+    Initial test framework and first test.
+    
+    Add a basic test framework, borrowed from the framework used
+    by git.git.  A shell script library (tests/test-lib.sh) helps
+    generate the fixtures, and simplifies the process of writing
+    test scripts.  Tests can be run as a suite (via 'make test')
+    or individually (sh tests/t0000-config.sh).  Results are aggregated
+    upon completion.  Includes a detailed README.
+    
+    A basic test of config file processing is part of this commit.
+    
+    Signed-off-by: Emil Sit <sit@emilsit.net>
+
+commit 0b3d9109deaf698f8b84b6850469e98b2e75f47f
+Author: Emil Sit <sit@emilsit.net>
+Date:   Sun Mar 22 08:13:25 2009 -0400
+
+    todo.sh: Generate version info at dist time.
+    
+    When generating the distribution files, prepare todo.sh
+    by subbing in the current version so that users will
+    get a proper version number.
+    
+    Tries to detect VERSION-FILE for running from
+    the development directory but this doesn't work well
+    when $PWD is not the top of the git repo.
+    
+    Signed-off-by: Emil Sit <sit@emilsit.net>
+
+commit ad40ef0f184bd2743a47f3edb9e1da216b928bb1
+Author: Emil Sit <sit@emilsit.net>
+Date:   Sun Mar 22 08:10:38 2009 -0400
+
+    Basic Makefile and infrastructure to support dist tarballs.
+    
+    Borrowing slightly from git.git, derive a VERSION-FILE
+    from the current state of user's git working directory.
+    The VERSION is derived relative to the latest git annotated
+    tag object (using git-describe) and includable either in
+    shell scripts or in Makefiles.
+    
+    The basic 'make dist' target generates a .tar.gz and a .zip
+    file named by the detected version.
+    
+    Also include a basic clean target and dummy test target.
+    
+    Signed-off-by: Emil Sit <sit@emilsit.net>
+
+commit 31216fe365a20c1e87f809d07e5fba930f5d261b
+Author: Emil Sit <sit@emilsit.net>
+Date:   Tue Mar 24 08:49:42 2009 +0800
+
+    _list: Fix line/item counting, accounting for blank lines.
+    
+    If a file had blank lines or was totally empty, _list would
+    result in an in-correct count of total items (either "" or
+    the number of lines, instead of the number of items).  This
+    commit splits the filtering into three phases: line numbering,
+    filtering (optional), and post-processing, and then does
+    counting separately, if desired.
+    
+    Signed-off-by: Emil Sit <sit@emilsit.net>
+    
+    Signed-off-by: Gina Trapani <ginatrapani@gmail.com>
+
+commit 7f5c8fb3e17e37a29481de57d4d2ee7716fcbff9
+Author: Emil Sit <sit@emilsit.net>
+Date:   Fri Mar 20 11:00:53 2009 +0800
+
+    Add a short help message to be called for -h.
+    
+    Put the old help message under a "help" command.  The
+    short help message just lists the available commands and
+    should fit on a single screen.
+    
+    Signed-off-by: Gina Trapani <ginatrapani@gmail.com>
+
+commit 3e7b60abcdfce80462f5c85618cf910423cb7185
+Author: Emil Sit <sit@emilsit.net>
+Date:   Fri Mar 20 02:38:12 2009 +0800
+
+    Factor out common usage message text.
+    
+    Signed-off-by: Gina Trapani <ginatrapani@gmail.com>
+
+commit cc3e5f73aa3de8041e3352f81b39e0c503ab8287
+Author: Emil Sit <sit@emilsit.net>
+Date:   Fri Mar 20 11:32:29 2009 +0800
+
+    _list: Add in an extra filter to remove empty lines.
+    
+    The rewrite of ls functionality may have allowed blank but numbered
+    lines to creep into the ls display.  Search for such lines and
+    exclude them.
+    
+    Signed-off-by: Emil Sit <sit@emilsit.net>
+    
+    Signed-off-by: Gina Trapani <ginatrapani@gmail.com>
+
+commit 52604ebf78f066f66494768c69b8e7e42b0ccccf
+Author: Gina Trapani <gina@ginatrapani.org>
+Date:   Thu Mar 19 18:52:47 2009 -0700
+
+    Tweaked version and contributor details
+
+commit bbe153b9bb47025dcc1954f141104a534558f915
+Merge: ec54a03 758cdc5
+Author: Gina Trapani <gina@ginatrapani.org>
+Date:   Thu Mar 19 18:40:10 2009 -0700
+
+    Merge branch 'harding/master'
+
+commit ec54a032cb8fe8e6744456173b09c5418a7bf4c8
+Author: Gina Trapani <gina@ginatrapani.org>
+Date:   Thu Mar 19 18:37:36 2009 -0700
+
+    Removed edit action
+
+commit 758cdc555122afa5169e36b4c0070a2c156aa5b0
+Merge: 02dc030 1e5902d
+Author: David A. Harding <harding@mail.dtrt.org>
+Date:   Thu Mar 19 07:10:09 2009 -0400
+
+    Merge branch 'gina/master'
+
+commit 02dc030225659b36a972e84302ebae717205e629
+Author: David A. Harding <harding@mail.dtrt.org>
+Date:   Thu Mar 19 07:06:07 2009 -0400
+
+    Putting Quotes Around $TODO_TMP
+    
+    Suggested by Gina.
+
+commit 7b769b2eea8fe5182e1695ff477cc87935045eae
+Author: David A. Harding <harding@mail.dtrt.org>
+Date:   Tue Mar 17 19:15:27 2009 -0400
+
+    s/[A-Z]/[[:upper:]]/
+
+commit 39ee9ab045ec699367c9e112cb6a96de93cabe3a
+Author: David A. Harding <harding@mail.dtrt.org>
+Date:   Tue Mar 17 14:07:48 2009 -0400
+
+    Added -vv For Debugging Output
+
+commit 1e5902d0e27ec9a1c574446d337e3114364cd287
+Merge: 62f3313 3df7497
+Author: Gina Trapani <gina@ginatrapani.org>
+Date:   Mon Mar 16 12:28:34 2009 -0500
+
+    Merge branch 'master' of git@github.com:ginatrapani/todo.txt-cli
+
+commit 3df7497287e5b3c816624ad57517cf26120580e9
+Author: Matt Brubeck <mbrubeck@limpet.net>
+Date:   Thu Mar 12 01:50:14 2009 +0800
+
+    Add TODOTXT_DEFAULT_ACTION variable.
+    
+    I like to set this to "ls" so I can just run "todo.sh" (or "t") to list my
+    tasks.
+    
+    Signed-off-by: Gina Trapani <ginatrapani@gmail.com>
+
+commit 07bb979d4315e9abc22323ce7258c8a42dfaed9e
+Author: David A. Harding <dave@dtrt.org>
+Date:   Sat Mar 14 15:06:53 2009 -0400
+
+    Move Filter Command Up & Remove Extra Sort Command
+
+commit 7e04849a4fe8cc8eabe169b89e20d4f1677caa5a
+Author: Ed Blackman <ed@edgewood.to>
+Date:   Sat Mar 14 13:39:27 2009 -0400
+
+    Move filter before priority text changes, so filter doesn't match invisible text
+
+commit f8b2646b92ce031ffda976154327d09e888dcf98
+Author: David A. Harding <dave@dtrt.org>
+Date:   Sat Mar 14 09:35:10 2009 -0400
+
+    Don't Echo Empty Lines & Streamline Sed wc -l Syntax
+
+commit 02980ae7eebe297ddf3696eb4719a8b893496ef4
+Author: Ed Blackman <ed@edgewood.to>
+Date:   Sat Mar 14 01:18:42 2009 -0400
+
+    Fix "post_hilter_command" typo
+
+commit 12bbf8fe67c764fb3a310db70781188bcb53573b
+Author: Ed Blackman <ed@edgewood.to>
+Date:   Sat Mar 14 01:17:46 2009 -0400
+
+    Fix spacing (tabs to spaces)
+
+commit ab786075068efaeae587cf2dc5559e55a0e5bc79
+Author: Ed Blackman <ed@edgewood.to>
+Date:   Sat Mar 14 01:15:52 2009 -0400
+
+    Use sed line counting to replace 'wc -l'
+
+commit 6be78ca5fafe971d98cd100fef8e71402b33378c
+Author: David A. Harding <dave@dtrt.org>
+Date:   Fri Mar 13 22:21:48 2009 -0400
+
+    Added Exclusion Syntax by Jacobo de Vera
+    
+    -keyword or -"key phrase" should exclude those terms from the output.
+
+commit 9ab77253db7ef4fb0678658cfe61956daa772e0d
+Author: Ed Blackman <ed@edgewood.to>
+Date:   Fri Mar 13 18:17:16 2009 -0400
+
+    Implement pre and post filters in _list
+
+commit cf3c5312bff5d57a8077d6c4a60a89370c794d96
+Author: Ed Blackman <ed@edgewood.to>
+Date:   Fri Mar 13 17:02:31 2009 -0400
+
+    Export _list for call by extensions
+
+commit 37a7bb0e8a92a918836a13f52282108cb97d74c0
+Author: Ed Blackman <ed@edgewood.to>
+Date:   Fri Mar 13 16:40:55 2009 -0400
+
+    Use relative rather than absolute filename in status message
+
+commit ed8e8e24d94f1fa7fe7a299abfaac9ec766c3a43
+Author: Ed Blackman <ed@edgewood.to>
+Date:   Fri Mar 13 16:34:25 2009 -0400
+
+    Consistent spacing for \ continuation in _list
+
+commit d6f00ca42ff178ea8a645eb24abb7d8ab147ef65
+Author: David A. Harding <dave@dtrt.org>
+Date:   Fri Mar 13 12:14:08 2009 -0400
+
+    Minor formatting and comments changes
+
+commit a03a3bf66bdf82020b6e02787195f2574379409a
+Author: David A. Harding <dave@dtrt.org>
+Date:   Fri Mar 13 11:59:03 2009 -0400
+
+    Fixed Windows Regression, New _list Function
+    
+    Commit f55f5e8b5ff77d introduced a known regression on Windows that
+    prevented users from using configuration files starting with C:\.  The
+    following logic fixes this:
+        +    ## If the file starts with a "/" use absolute path. Otherwise,
+        +    ## try to find it in either $TODO_DIR or using a relative path
+        +    if [ "${1:0:1}" == / ]
+        +    then
+        +        ## Absolute path
+        +        src="$FILE"
+        +    elif [ -f "$TODO_DIR/$FILE" ]
+        +    then
+        +        ## Path relative to todo.sh directory
+        +        src="$TODO_DIR/$1"
+        +    elif [ -f "$FILE" ]
+        +    then
+        +       ## Path relative to current working directory
+        +       src="$FILE"
+        +    else
+        +        echo "TODO: File $FILE does not exist."
+        +       exit 1
+        +    fi
+    
+    New _list function takes a filename and a list of search expressions.
+    We no longer use exec to call ourselves recursively.
+
+commit 448cecb91db28a9e59bc952ae2b78342147e5da3
+Author: David A. Harding <dave@dtrt.org>
+Date:   Fri Mar 13 11:00:34 2009 -0400
+
+    Simplify and Reused Code to Print ls Summary Line
+
+commit ee59233c36928c1e26bb08a7d0b7570c4277ff42
+Author: David A. Harding <dave@dtrt.org>
+Date:   Thu Mar 12 22:23:59 2009 -0400
+
+    Replaced Grep Loop, Fixed Sed Bug, Some Small Changes
+    
+    Implemented several suggestions by Jacobo de Vera:
+    
+        > 1. [lines 539-551]: [...] replace the for loop with simply this:
+        >    PADDING=${#LINES}
+    
+        > 2. [line 558]: As the script now supports a 6 digit number of tasks,
+        > the first substitution should add 5 spaces instead of 2
+    
+        > 3. [lines 606-613]: The first search item is processed before the for
+        >    loop, and the loop does the same for the rest. Wouldn't making this
+        >    more general make the code more readable?
+    
+    The changes for suggestion #3 let me add a new feature: when VERBOSE is
+    enabled, the summary line prints more info -- and it prints it on every
+    run:
+    
+        $ todo.sh ls "buy a"
+        34 Buy a portable gas can @errands +safe
+        --
+        TODO: 1 of 49 tasks shown from /home/harding/var/git/todo/todo.txt
+    
+    Also, generalizing and centralizing the code added a small but
+    measurable speed increase.
+    
+    No new known regressions were introduced.
+
+commit f55f5e8b5ff77dac98c52322b6433299d5dcf575
+Author: David A. Harding <dave@dtrt.org>
+Date:   Thu Mar 12 11:52:28 2009 -0400
+
+    Make ls-Family Actions Use Listfile Backend
+    
+    Essentially,
+    
+        ls)
+    	shift
+    	exec "$TODO_SH" listfile "$TODO_FILE" "$@"
+    	;;
+        lsa)
+    	shift
+    	cat "$TODO_FILE" "$DONE_FILE" > "$TMP_FILE"
+    	exec $TODO_SH listfile "$TMP_FILE" "$@"
+    	;;
+        lsp)
+    	shift ## was "listpri"
+    	shift ## was priority
+    	exec $TODO_SH listfile "$TODO_FILE" "$pri" "$@"
+    	;;;
+    
+    Also adds the following features:
+    
+        1. Numbers are padded with up to five zeros (but only the minimum
+           necessary), letting you list up to 999,999 tasks with the same
+           formatting.
+    
+        2. All ls-family commands hide context, priority, and project when
+           the user sets those hide options.
+    
+        3. Quoted arguments are passed on to grep as whole arguments,
+           enabling the following:
+    
+    	$ todo.sh ls buy a | head -n2
+    	34 Buy a portable gas can
+    	22 Buy door
+    
+    	$ todo.sh ls "buy a"
+    	34 Buy a portable gas can
+    
+        4. listfile can take an absolute path. Any filename starting with a
+           "/" will be treated as an absolute path; any other filename will
+           be treated as relative to $TODO_DIR. Since a leading "/" would be
+           striped by the operating system anyway under the old code, this
+           is fully backward compatible.
+    
+    Contains the following regressions:
+    
+        1. The ls verbose line count messages are more generic.
+    
+        2. There is no verbose line count line for lspri.
+    
+        3. I don't think listfile's absolute path feature will work on
+           Windows. If it doesn't, either this patch needs to be thrown
+           away, listall needs to be rewritten, or (my preference) $TMP_FILE
+           needs to set as relative to $TODO_DIR.
+
+commit d508ed9dee31d5021b5567265719ab9a7dd7ae32
+Author: David A. Harding <dave@dtrt.org>
+Date:   Thu Mar 12 01:02:10 2009 -0400
+
+    Modularized Listing Sed
+    
+    Still more to do tomorrow.
+
+commit 62f3313ff9f668706536cc0743804f315a253496
+Merge: 3e9d40e 6bc374c
+Author: Matt Brubeck <mbrubeck@limpet.net>
+Date:   Wed Mar 11 16:22:27 2009 -0700
+
+    Merge branch 'master' of git://github.com/ginatrapani/todo.txt-cli
+
+commit 6bc374c5f280e74debf30ea853112cc790ab0dca
+Author: David A. Harding <dave@dtrt.org>
+Date:   Wed Mar 11 17:54:25 2009 -0400
+
+    Revert "Set ls As the Default Action"
+    
+    This reverts commit 87959a8aa8cdc91c83688ae7809518d3b77bd522.
+
+commit 87959a8aa8cdc91c83688ae7809518d3b77bd522
+Author: David A. Harding <dave@dtrt.org>
+Date:   Wed Mar 11 17:42:15 2009 -0400
+
+    Set ls As the Default Action
+    .
+    Suggested by mbrubeck
+
+commit 3e9d40ebd71cba61f3217a86333ae2412eeadea6
+Author: Matt Brubeck <mbrubeck@limpet.net>
+Date:   Wed Mar 11 11:36:23 2009 -0700
+
+    'edit' plugin to open files in a text editor.
+
+commit 6bc05000d9013e54a7a650e159274d85209f2d97
+Author: Matt Brubeck <mbrubeck@limpet.net>
+Date:   Wed Mar 11 10:50:14 2009 -0700
+
+    Add TODOTXT_DEFAULT_ACTION variable.
+    
+    I like to set this to "ls" so I can just run "todo.sh" (or "t") to list my
+    tasks.
+
+commit 717f052f13e2f5d168dbc73fd0ee429fa84415ad
+Author: David A. Harding <dave@dtrt.org>
+Date:   Mon Mar 9 16:19:30 2009 -0400
+
+    Only Reset Action When Necessary plus Comments
+
+commit 4ee8c332eddde2640e0ad6b6a33cce4ff8a6c81b
+Author: Philippe Teuwen <phil@teuwen.org>
+Date:   Mon Mar 9 20:43:42 2009 +0100
+
+    Remove redundant code
+
+commit 88caf44e9e1f0dfd8812879374de905faba0c201
+Author: David A. Harding <dave@dtrt.org>
+Date:   Mon Mar 9 14:10:21 2009 -0400
+
+    Override Overrides Using "command"
+    
+    New action, "command", forces todo.sh to use builtins and ignore any
+    .todo.actions.d scripts.  For example, if there is an executable
+    .todo.actions.d/ls:
+    
+        ## Run .todo.actions.d/ls
+        todo.sh ls
+    
+        ## Run builtin todo.sh ls
+        todo.sh command ls
+    
+    This mimicks bash's behaviour:
+    
+        ## Use the default echo
+        harding@ziggy:~$ echo 'foo\nbar'
+        foo\nbar
+    
+        ## Alias the echo command to "echo -e"
+        harding@ziggy:~$ alias echo='echo -e'
+        harding@ziggy:~$ echo 'foo\nbar'
+        foo
+        bar
+    
+        ## Force bash to call the default echo command
+        harding@ziggy:~$ command echo 'foo\nbar'
+        foo\nbar
+
+commit db6676717079be729233724bbdb70b6e069585fb
+Author: Philippe Teuwen <phil@teuwen.org>
+Date:   Mon Mar 9 10:09:32 2009 +0100
+
+    Add TODOTXT_UNDEF_CUSTOM_ACTIONS for recursive call of todo.sh from actions
+    
+    And replace tabs by spaces.
+    
+    To illustrate the interest of this new variable, here is an action
+    to replace the original add to allow a priority to be set when adding.
+    The action itself relies on the original add, therefore the need for
+    this new envvar.
+    
+    action=$1
+    shift
+    [ "$action" = "usage" ] && {
+      echo "    add pri PRIORITY \"THING I NEED TO DO +project @context\""
+      echo "      add an item and prioritize it in one step"
+      echo ""
+      exit
+    }
+    
+    . $TODOTXT_CFG_FILE
+    TODOTXT_UNDEF_CUSTOM_ACTIONS=1
+    PRIORITY=false
+    if [ x"$1" = x"pri" -o x"$1" = x"p" ] && [[ x"$2" =~ x[a-zA-Z] ]]; then
+        PRIORITY=$2
+        shift
+        shift
+    fi
+    if $TODO_SH add "$@" && [ $PRIORITY != false ]; then
+        # figure out the line of what we just added, and "do" it
+        line=`wc -l "$TODO_FILE" | cut -d' ' -f1`
+        $TODO_SH pri "$line" $PRIORITY
+    fi
+
+commit f8f8e83c40d5083c6d1f657f7229c0607ce75fc3
+Merge: e4c7979 2648bb0
+Author: David A. Harding <dave@dtrt.org>
+Date:   Sun Mar 8 22:29:27 2009 -0400
+
+    Merge branch 'gina/master'
+    
+    Conflicts:
+    
+    	todo.sh
+
+commit 2648bb047c5c67162508b4f3204a3a1ffd5a6f81
+Author: Philippe Teuwen <phil@teuwen.org>
+Date:   Mon Mar 9 07:12:45 2009 +0800
+
+    Keep it simple
+    
+    Signed-off-by: Gina Trapani <ginatrapani@gmail.com>
+
+commit bbff2d13bb2cc157f6399b81700d66030c0d1a54
+Author: Philippe Teuwen <phil@teuwen.org>
+Date:   Mon Mar 9 07:06:58 2009 +0800
+
+    Remove usage call and export TODOTXT_SH for action.d
+    
+    Signed-off-by: Gina Trapani <ginatrapani@gmail.com>
+
+commit e4c7979888cbd58e37545ee765b91bd69c5af24c
+Merge: 47c7ba7 2bd2e9f
+Author: David A. Harding <dave@dtrt.org>
+Date:   Sun Mar 8 20:50:27 2009 -0400
+
+    Merge branch 'gina/master'
+    
+    Conflicts:
+    
+    	todo.sh
+
+commit 47c7ba75b3ba651faadcf9223e414e5bc51d17ec
+Author: Ed Blackman <ed@edgewood.to>
+Date:   Sun Mar 8 18:41:27 2009 -0400
+
+    Remove now-redundant export of CFG_FILE
+
+commit 2bd2e9f7bde93c03df43f92feba2671f1f9d6561
+Author: Philippe Teuwen <phil@teuwen.org>
+Date:   Mon Mar 9 06:08:09 2009 +0800
+
+    Options & environment variables: add namespace & allow for preset
+    
+    This patch does 2 things:
+    - Allowing environment variables corresponding to options (e.g. VERBOSE for -v)
+    to be predefined in the user environment instead of having to always use
+    the corresponding option.
+    - Adding namespace TODOTXT_ to those envvars to avoid clashes in user environment
+    
+    todo.action.d scripts can call recursively todo.sh and this patch preserves
+    the options/envvars through the calls.
+    As a bonus, now the user can export in advance one of those variables in
+    his/her environment and it would have the same effect as using the todo.sh
+    corresponding option.
+    
+    export TODOTXT_AUTO_ARCHIVE=0          is same as option -a
+    export TODOTXT_CFG_FILE=CONFIG_FILE    is same as option -d CONFIG_FILE
+    export TODOTXT_FORCE=1                 is same as option -f
+    export TODOTXT_PRESERVE_LINE_NUMBERS=0 is same as option -n
+    export TODOTXT_PLAIN=1                 is same as option -p
+    export TODOTXT_DATE_ON_ADD=1           is same as option -t
+    export TODOTXT_VERBOSE=1               is same as option -v
+    
+    Signed-off-by: Gina Trapani <ginatrapani@gmail.com>
+
+commit f37cedc7ca16f971a3a28157d4f79f2d62e25d14
+Author: U-STARBUCK\gina <gina@starbuck.(none)>
+Date:   Sun Mar 8 14:47:33 2009 -0700
+
+    Removed index.html
+
+commit 7b2c9f080a3cc59db8fad6e92478d9bfad30c90f
+Author: David A. Harding <dave@dtrt.org>
+Date:   Sun Mar 8 12:08:04 2009 -0400
+
+    Merged In Gina's Latest
+
+commit 98646a575a29fff8b75b1a881ca96c50128f9ef1
+Author: David A. Harding <dave@dtrt.org>
+Date:   Sun Mar 8 11:46:26 2009 -0400
+
+    Exit If .todo.actions.d Script Is Run
+    .
+    Suggested by Philippe Teuwen, this patch undoes a lot of the unnecessary
+    formating changes in my previous patch.
+
+commit e6649e6293d211be398cd69e6e5f26ca4def51d6
+Author: David A. Harding <dave@dtrt.org>
+Date:   Sun Mar 8 11:25:12 2009 -0400
+
+    Removed Extended Regexes from Hiding Code
+    .
+    Dave Hein noticed the extended regular expressions (regex) in the
+    original patch don't work by default on Mac OS X (FreeBSD sed).  Now
+    using his suggested regex format: [[:space:]]@[^[:space:]]\{1,\}
+    .
+    Also changed: I misapplied part of the patch originally.  That's now
+    fixed.  I expanded part of the regular expression in the list
+    sub-expression so that I could change part of the coloring code.
+
+commit eb617527085bce8083b253bf5f4db862427075d5
+Merge: 5683490 7bd6696
+Author: U-STARBUCK\gina <gina@starbuck.(none)>
+Date:   Sat Mar 7 21:51:54 2009 -0800
+
+    Merge branch 'gh-pages' of git://github.com/ginatrapani/todo.txt-cli
+
+commit 5683490c0e810626184263976d1757ea39b22d39
+Author: Ed Blackman <ed@edgewood.to>
+Date:   Sat Mar 7 10:35:08 2009 +0800
+
+    Export variables so that they can be easily used in actions
+    
+    Signed-off-by: Gina Trapani <ginatrapani@gmail.com>
+
+commit 20e68927754017a9600f23054f05d9e7db5208f8
+Author: David A. Harding <dave@dtrt.org>
+Date:   Sat Mar 7 16:15:15 2009 -0500
+
+    Run .todo.actions.d Before Builtins
+    .
+    Let users override default commands by creating a script in
+    ~/.todo.actions.d/ with the same name as a default command.  Idea by Don
+    Harper and David A. Harding; patch by Harding.
+    .
+    The patch adds the following logic and increases the indent level for
+    the case statement:
+    .
+    +if [ -d "$HOME/.todo.actions.d" -a -x "$HOME/.todo.actions.d/$action" ]
+    +then
+    +    CFG_FILE="$CFG_FILE" "$HOME/.todo.actions.d/$action" "$@"
+    +else
+    +    case $action in
+
+commit fd9b002ce13c10e2be13de193ac9f9911a9a6a28
+Author: David A. Harding <dave@dtrt.org>
+Date:   Sat Mar 7 13:05:40 2009 -0500
+
+    Hiding Priority, Context, and Project
+    .
+    Adds three new switches that hide priorty, context, and project text in
+    list output.
+    .
+    Changes proposed by Dave Hein.  Original patch by Dave Hein.  Revised
+    patch by David A. Harding. Thread starts at
+    http://tech.groups.yahoo.com/group/todotxt/message/1848
+
+commit 7736e6b4fa386a06f7aa3b742b3a78dee76f04ab
+Author: atduskgreg <greg@mfdz.com>
+Date:   Sat Mar 7 03:02:31 2009 +0800
+
+    Added a note to the README to point to Gina's branch.
+    
+    Signed-off-by: ginatrapani <ginatrapani@gmail.com>
+
+commit 586abe8282e8abdb77ef4624608d8f038a2e901a
+Author: Philippe Teuwen <phil@teuwen.org>
+Date:   Sat Mar 7 04:16:13 2009 +0800
+
+    Cleaning indentation and mix of tabs/spaces, nothing else I swear ;-)
+    
+    Signed-off-by: ginatrapani <ginatrapani@gmail.com>
+
+commit 7bd669654066960c32a7d91c3c751eb0602cbd41
+Author: ginatrapani <ginatrapani@gmail.com>
+Date:   Thu Mar 5 19:49:13 2009 -0700
+
+commit b5a03cfee58ba22f2830e08fd9798553fab288d6
+Author: ginatrapani <ginatrapani@gmail.com>
+Date:   Thu Mar 5 19:47:20 2009 -0700
+
+commit d7b9f87994101bfcb97194b4eb8cd06a95a4bbbf
+Author: ginatrapani <ginatrapani@gmail.com>
+Date:   Thu Mar 5 19:46:27 2009 -0700
+
+    Updated name and background color
+
+commit 959598416f4c7b2859f2914e61afcc77ab466532
+Author: ginatrapani <ginatrapani@gmail.com>
+Date:   Thu Mar 5 19:07:23 2009 -0700
+
+    github generated gh-pages branch
+
+commit 25c65050076993aaf552ecedf2aba137e8f143b8
+Author: U-STARBUCK\gina <gina@starbuck.(none)>
+Date:   Thu Mar 5 17:56:56 2009 -0800
+
+    Shortened README
+
+commit 9c6efe2ed7c4b9718e7328641c148d22164cb1eb
+Author: U-STARBUCK\gina <gina@starbuck.(none)>
+Date:   Thu Mar 5 17:26:24 2009 -0800
+
+    Version 2.1 first commit
+
+commit 7ecda8973b9be28ca57215fd5c6782f173aa1524
+Author: U-STARBUCK\gina <gina@starbuck.(none)>
+Date:   Thu Mar 5 17:18:07 2009 -0800
+
+    first commit
