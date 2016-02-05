@@ -5,8 +5,6 @@ Priority: optional
 Standards-Version: 3.9.6
 Build-Depends: debhelper (>= 9),
 Homepage: http://todotxt.com/
-Vcs-Browser: https://github.com/ginatrapani/todo.txt-cli/
-Vcs-Git: https://github.com/ginatrapani/todo.txt-cli/
 
 Package: todotxt-cli
 Architecture: all
