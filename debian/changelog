@@ -1,6 +1,7 @@
 todotxt-cli (2.10-2) UNRELEASED; urgency=medium
 
   * Removed wrong Vcs URLs.
+  * Standards-Version is 3.9.7 now (no change).
 
  -- Ondřej Nový <novy@ondrej.org>  Fri, 05 Feb 2016 20:44:58 +0100
 
