@@ -5,7 +5,6 @@ Priority: optional
 Standards-Version: 3.9.7
 Build-Depends: debhelper (>= 9),
 Homepage: http://todotxt.com/
-XS-Testsuite: autopkgtest
 
 Package: todotxt-cli
 Architecture: all
