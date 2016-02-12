@@ -11,8 +11,7 @@ Package: todotxt-cli
 Architecture: all
 Depends: ${misc:Depends},
          ${shlibs:Depends},
-Description: simple and extensible shell script for managing your todo.txt
- file
+Description: simple and extensible shell script for managing todo.txt file
  .
  If you have a file called todo.txt on your computer right now, you're in the
  right place.
